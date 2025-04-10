@@ -1,0 +1,173 @@
+<!-- <nav class="navbar">
+  <div class="left">
+    <a routerLink="/dashboard">🏠 Accueil</a>
+    <a routerLink="/profil">👤 Profil</a>
+  </div>
+
+  <div class="right">
+    <span *ngIf="role">👋 Bonjour, {{ role }}</span>
+    <a *ngIf="role === 'Admin'" routerLink="/admin-panel">⚙️ Admin</a>
+    <button (click)="logout()">Déconnexion</button>
+  </div>
+</nav> -->
+
+
+<!-- navbar.component.html -->
+<!-- <div class="navbar bg-light p-3">
+    <div class="left" style="display: flex; align-items: center; justify-content: space-between;">
+      <input type="text" [(ngModel)]="searchQuery" (input)="onRecherche()" (keyup.enter)="onSelectResult(searchResults[0])" placeholder="Rechercher...">
+      <button (click)="onRecherche()">Rechercher</button>
+      <div *ngIf="searchResults.length > 0" class="search-results bg-white shadow rounded position-absolute w-100 mt-1">
+        <ul class="list-group">
+          <li *ngFor="let result of searchResults" class="list-group-item list-group-item-action" 
+              (click)="onSelectResult(result)">
+            <a (click)="onRecherche()" class="text-decoration-none d-block">
+              <i class="bi bi-search"></i> {{ result.nom || result.prenom || result.classe || result.enseignant || result.scolarite }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <span class="text-muted" style="margin-left: 20px;">{{ currentDate | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+    </div>
+  <div class="right">
+    <div class="dropdown">
+      <button class="dropbtn">⚙️Paramètres</button>
+      <div class="dropdown-content">
+        <a href="#">Ajouter une classe</a>
+        <a href="#">Ajouter un enseignant</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <span *ngIf="role">👋 Role:<span style="color:green"> {{ role }}</span></span>
+    </div>
+    <div class="dropdown">
+      <button class="dropbtn">
+        <ng-container  *ngIf="username; else inconnu">
+          <span style="color:rgb(45, 197, 218)">{{ username.prenom }} {{ username.nom }}</span>
+        </ng-container>
+        <ng-template #inconnu>Utilisateur inconnu</ng-template>
+      </button>
+      <div class="dropdown-content">
+        <a href="#" style="color:red;" (click)="logout()">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- 
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-3 shadow">
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="search-container position-relative">
+      <input type="text" class="form-control" [(ngModel)]="searchQuery" (input)="onRecherche()" 
+             (keyup.enter)="onSelectResult(searchResults[0])" placeholder="Rechercher...">
+      <button class="btn btn-primary ms-2" (click)="onRecherche()">
+        <i class="bi bi-search"></i>
+      </button>
+
+      <div *ngIf="searchResults.length > 0" 
+           class="search-results position-absolute bg-white shadow rounded w-100 mt-1 z-index-100">
+        <ul class="list-group">
+          <li *ngFor="let result of searchResults" class="list-group-item list-group-item-action">
+            <a href="#" class="text-decoration-none d-block text-dark" 
+               (click)="onSelectResult(result); searchResults = []">
+              <i class="bi bi-search"></i> 
+              {{ result.nom || result.prenom || result.classe || result.enseignant || result.scolarite }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="text-muted ms-3">{{ currentDate | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+    
+    <div class="d-flex align-items-center">
+      <div class="dropdown me-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          ⚙️ Paramètres
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Ajouter une classe</a></li>
+          <li><a class="dropdown-item" href="#">Ajouter un enseignant</a></li>
+        </ul>
+      </div>
+      
+      <span *ngIf="role" class="me-3">👋 Role: <span class="text-success">{{ role }}</span></span>
+      
+      <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <ng-container *ngIf="username; else inconnu">
+            <span class="text-white">{{ username.prenom }} {{ username.nom }}</span>
+          </ng-container>
+          <ng-template #inconnu>Utilisateur inconnu</ng-template>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Déconnexion</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-3 shadow position-relative mt-0">
+  <div class="container-fluid d-flex justify-content-between">
+    
+    <!-- Barre de recherche -->
+    <div class="search-container position-relative">
+      <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchQuery" (input)="onRecherche()" 
+               (keyup.enter)="onSelectResult(searchResults[0])" placeholder="Rechercher...">
+        <button class="btn btn-primary" (click)="onRecherche()">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+      
+      <!-- Résultats de la recherche -->
+      <div *ngIf="searchResults.length > 0" 
+           class="search-results position-absolute bg-white shadow rounded w-100 mt-1 z-index-100">
+        <ul class="list-group">
+          <li *ngFor="let result of searchResults" class="list-group-item list-group-item-action">
+            <a href="#" class="text-decoration-none d-block text-dark" 
+               (click)="result.id? onSelectResult(result): null; searchResults = []">
+              <i class="bi bi-search"></i> 
+              {{ result.nom || result.prenom || result.classe || result.enseignant || result.scolarite }}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="text-muted ms-3">{{ currentDate | date:'dd/MM/yyyy HH:mm:ss' }}</span>
+
+    <!-- Menus dropdown -->
+    <div class="d-flex align-items-center">
+      
+      <!-- Paramètres -->
+      <div class="dropdown me-3">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          ⚙️ Paramètres
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Ajouter une classe</a></li>
+          <li><a class="dropdown-item" href="#">Ajouter un enseignant</a></li>
+        </ul>
+      </div>
+
+      <span *ngIf="role" class="me-3">👋 Role: <span class="text-success">{{ role }}</span></span>
+
+      <!-- Utilisateur -->
+      <div class="dropdown">
+        <button class="btn btn-info dropdown-toggle text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <ng-container *ngIf="username; else inconnu">
+            {{ username.prenom }} {{ username.nom }}
+          </ng-container>
+          <ng-template #inconnu>Utilisateur inconnu</ng-template>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item text-danger" href="#" (click)="logout()">Déconnexion</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</nav>

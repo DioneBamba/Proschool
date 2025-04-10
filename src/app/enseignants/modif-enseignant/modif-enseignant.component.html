@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2 class="text-center">Modifier un Enseignant</h2>
+  <form class="form-group" [formGroup]="enseignantForm" (ngSubmit)="modifierEnseignant()">
+    <label class="form-label">Prénom:</label>
+    <input class="form-control" type="text" formControlName="prenom" required>
+  
+    <label class="form-label">Nom:</label>
+    <input class="form-control" type="text" formControlName="nom" required>
+  
+    <label class="form-label">Date de naissance:</label>
+    <input class="form-control" type="date" formControlName="date_naissance" required>
+  
+    <label class="form-label">Lieu de naissance:</label>
+    <input class="form-control" type="text" formControlName="lieu_naissance" required>
+  
+    <label class="form-label">Téléphone:</label>
+    <input class="form-control" type="text" formControlName="telephone" required>
+  
+    <label class="form-label">Profession:</label>
+    <input class="form-control" type="text" formControlName="profession" required>
+  
+    <!-- <label class="form-label">Photo actuelle:</label>
+    <div *ngIf="enseignant.photo">
+      <img [src]="'http://localhost/proSchool/backend/api/' + enseignant.photo" alt="Photo" width="100">
+    </div>
+  
+    <label class="form-label">Nouvelle photo:</label>
+    <input class="form-control" type="file" (change)="onFileSelected($event)"> -->
+  
+    <button class="btn btn-primary btn-sm mt-4" type="submit" [disabled]="enseignantForm.invalid">Modifier</button>
+  </form>
+</div>

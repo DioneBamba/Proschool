@@ -1,0 +1,74 @@
+<!-- <h2>Tableau de bord - Élève</h2>
+<div class="dashboard">
+  <div class="card">📅 Emploi du temps d'aujourd'hui : {{ emploiDuTemps }}</div>
+  <div class="card">📖 Notes récentes : {{ moyenneGenerale }}</div>
+  <div class="card">📜 Absences : {{ totalAbsences }}</div>
+</div> -->
+
+
+<div class="container mt-4">
+  <div class="row g-4">
+
+    <!-- Bloc total des absences -->
+    <div class="col-md-4">
+      <div class="card text-white bg-danger shadow rounded-4">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="card-title">Total des absences</h5>
+            <h2>{{ totalAbsences }}</h2>
+          </div>
+          <i class="bi bi-person-x fs-1"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc meilleures moyennes -->
+    <div class="col-md-8">
+      <div class="card shadow rounded-4">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0"><i class="bi bi-trophy-fill me-2"></i>Meilleures moyennes par classe</h5>
+        </div>
+        <div class="card-body p-2">
+          <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let moyenne of meilleuresMoyennes">
+              {{ moyenne.nom_classe }} - {{ moyenne.nom }} {{ moyenne.prenom }}
+              <span class="badge bg-success rounded-pill">{{ moyenne.moyenne }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloc emploi du temps -->
+    <div class="col-12">
+      <div class="card shadow rounded-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0"><i class="bi bi-calendar-week me-2"></i>Emploi du temps du jour</h5>
+        </div>
+        <div class="card-body p-2">
+          <table class="table table-bordered table-striped">
+            <thead class="table-light">
+              <tr>
+                <th>Classe</th>
+                <th>Matière</th>
+                <th>Heure</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let emploi of emploiDuTempsDuJour">
+                <td>{{ emploi.nom_classe }}</td>
+                <td>{{ emploi.matiere_nom }}</td>
+                <td>{{ emploi.heure}}</td>
+              </tr>
+              <tr *ngIf="emploiDuTempsDuJour.length === 0">
+                <td colspan="5" class="text-center text-muted">Aucun cours prévu aujourd'hui</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

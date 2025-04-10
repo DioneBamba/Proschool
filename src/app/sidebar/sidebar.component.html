@@ -1,0 +1,223 @@
+<!-- <nav class="sidebar">
+  <ul>
+    <li><a routerLink="/dashboard">📊 Tableau de bord</a></li>
+
+    
+    <li *ngIf="role === 'Admin' || role === 'Enseignant'">
+      <a routerLink="/eleves">📚 Gestion des Élèves</a>
+    </li>
+
+    
+    <li *ngIf="role === 'Admin'">
+      <a routerLink="/enseignants">👨‍🏫 Gestion des Enseignants</a>
+    </li>
+
+   
+    <li *ngIf="role === 'Admin' || role === 'Enseignant'">
+      <a routerLink="/absences">📌 Gestion des Absences</a>
+    </li>
+
+    <li *ngIf="role === 'Admin'">
+      <a routerLink="/paiements">💳 Gestion des Paiements</a>
+    </li>
+
+    <li *ngIf="role === 'Admin' || role === 'Enseignant'">
+      <a routerLink="/emploi-du-temps">📅 Emploi du Temps</a>
+    </li>
+
+    <li><a (click)="logout()">🚪 Déconnexion</a></li>
+  </ul>
+</nav> -->
+
+
+<!-- sidebar.component.html -->
+
+<!-- <div class="sidebar">
+  <ul>
+    <li><a routerLink="/dashboard" routerLinkActive="active">📊Dashboard</a></li>
+    <li *ngIf="role === 'admin'"><a routerLink="/admin-dashboard" routerLinkActive="active">📊Admin dashboard</a></li>
+    <li *ngIf="role === 'eleve'"><a routerLink="/eleve-dashboard" routerLinkActive="active">📊Elève dashboard</a></li>
+    <li *ngIf="role === 'enseignant'"><a routerLink="/enseignant-dashboard" routerLinkActive="active">📊Enseignant dashboard</a></li>
+    <li><a routerLink="/eleves" routerLinkActive="active">📚Élèves</a></li>
+    <li><a routerLink="/enseignants" routerLinkActive="active">👨‍🏫Enseignants</a></li>
+    <li><a routerLink="/classes" routerLinkActive="active"><i class="bi bi-people"></i>Classes</a></li>
+    <li><a routerLink="/matieres" routerLinkActive="active">Matieres</a></li>
+    <li><a routerLink="/emargements" routerLinkActive="active">Emargement</a></li>
+    <li><a routerLink="/emplois-du-temps" routerLinkActive="active">📅Emplois du temps</a></li>
+    <li><a routerLink="/absences" routerLinkActive="active">📌Absences</a></li>
+    <li><a routerLink="/notes" routerLinkActive="active">Notes</a></li>
+    <li><a routerLink="/scolarites" routerLinkActive="active">💳Scolarité</a></li>
+    <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+  </ul>
+</div> -->
+
+
+<!-- <div class="sidebar">
+  <nav class="sidebar bg-dark vh-100 p-3">
+    <div class="text-center mb-3">
+      <img src="/assets/logoSchool2.jpg" alt="Logo" class="img-fluid" style="max-width: 80px;">
+    </div>
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngIf="role === 'admin'">
+        <a class="nav-link text-white" routerLink="/admin-dashboard" routerLinkActive="active">
+          <i class="bi bi-speedometer2"></i> Admin Dashboard
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role === 'eleve'">
+        <a class="nav-link text-white" routerLink="/eleve-dashboard"  routerLinkActive="active" >
+          <i class="bi bi-mortarboard"></i> Élève Dashboard
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="role === 'enseignant'">
+        <a class="nav-link text-white" routerLink="/enseignant-dashboard" routerLinkActive="active">
+          <i class="bi bi-person-badge"></i> Enseignant Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/eleves" routerLinkActive="active">
+          <i class="bi bi-people-fill"></i> Élèves
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/enseignants" routerLinkActive="active">
+          <i class="bi bi-person-lines-fill"></i> Enseignants
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/classes" routerLinkActive="active">
+          <i class="bi bi-collection"></i> Classes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/matieres" routerLinkActive="active">
+          <i class="bi bi-journal"></i> Matières
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/emargements" routerLinkActive="active">
+          <i class="bi bi-pencil-square"></i> Emargement
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/emplois-du-temps" routerLinkActive="active">
+          <i class="bi bi-calendar-check"></i> Emplois du temps
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/absences" routerLinkActive="active">
+          <i class="bi bi-exclamation-triangle"></i> Absences
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/notes" routerLinkActive="active">
+          <i class="bi bi-card-list"></i> Notes
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/scolarites" routerLinkActive="active">
+          <i class="bi bi-credit-card"></i> Scolarité
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/notifications" routerLinkActive="active">
+          <i class="bi bi-bell"></i> Notifications
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/actif-users" routerLinkActive="active">
+          <i class="bi bi-toggle-on"></i> Utilisateurs Actifs
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" routerLink="/login" routerLinkActive="active">
+          <i class="bi bi-box-arrow-in-right"></i> Se connecter
+        </a>
+      </li>
+    </ul>
+  </nav>
+  
+</div> -->
+
+
+<nav class="sidebar bg-dark vh-100 p-3">
+  <div class="text-center mb-3">
+    <img src="/assets/logoSchool2.jpg" alt="Logo" class="img-fluid" style="max-width: 80px;">
+  </div>
+  <ul class="nav flex-column">
+    <li class="nav-item" *ngIf="role === 'admin'">
+      <a class="nav-link" routerLink="/admin-dashboard" routerLinkActive="active">
+        <i class="bi bi-speedometer2"></i> Admin Dashboard
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="role === 'eleve'">
+      <a class="nav-link" routerLink="/eleve-dashboard" routerLinkActive="active">
+        <i class="bi bi-mortarboard"></i> Élève Dashboard
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="role === 'enseignant'">
+      <a class="nav-link" routerLink="/enseignant-dashboard" routerLinkActive="active">
+        <i class="bi bi-person-badge"></i> Enseignant Dashboard
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/eleves" routerLinkActive="active">
+        <i class="bi bi-people-fill"></i> Élèves
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/enseignants" routerLinkActive="active">
+        <i class="bi bi-person-lines-fill"></i> Enseignants
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/classes" routerLinkActive="active">
+        <i class="bi bi-collection"></i> Classes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/matieres" routerLinkActive="active">
+        <i class="bi bi-journal"></i> Matières
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/emargements" routerLinkActive="active">
+        <i class="bi bi-pencil-square"></i> Emargement
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/emplois-du-temps" routerLinkActive="active">
+        <i class="bi bi-calendar-check"></i> Emplois du temps
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/absences" routerLinkActive="active">
+        <i class="bi bi-exclamation-triangle"></i> Absences
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/notes" routerLinkActive="active">
+        <i class="bi bi-card-list"></i> Notes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/scolarites" routerLinkActive="active">
+        <i class="bi bi-credit-card"></i> Scolarité
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/notifications" routerLinkActive="active">
+        <i class="bi bi-bell"></i> Notifications
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/actif-users" routerLinkActive="active">
+        <i class="bi bi-toggle-on"></i> Utilisateurs Actifs
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/login" routerLinkActive="active">
+        <i class="bi bi-box-arrow-in-right"></i> Se connecter
+      </a>
+    </li>
+  </ul>
+</nav>

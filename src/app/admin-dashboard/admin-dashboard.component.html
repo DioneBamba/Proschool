@@ -1,0 +1,40 @@
+<div class="container mt-4 ">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h2 class=" mb-0">Tableau de bord - Admin</h2>
+    <div class="d-flex align-items-center gap-2">
+      <app-select-annee-scolaire></app-select-annee-scolaire>
+      <app-ajout-annee-scolaire></app-ajout-annee-scolaire>
+    </div>
+  </div>
+  <!-- <app-annee-scolaire></app-annee-scolaire> -->
+  <!-- <app-ajout-annee-scolaire></app-ajout-annee-scolaire> -->
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card text-center p-3 shadow-sm">
+        <h5 class="card-title"><i class="bi bi-people-fill"></i> Total Élèves</h5>
+        <p class="card-text fw-bold">{{ statsForm.value.totalEleves }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center p-3 shadow-sm">
+        <h5 class="card-title"><i class="bi bi-person-badge-fill"></i> Total Enseignants</h5>
+        <p class="card-text fw-bold">{{ statsForm.value.totalEnseignants }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center p-3 shadow-sm">
+        <h5 class="card-title"><i class="bi bi-cash-stack"></i> Total Paiements</h5>
+        <p class="card-text fw-bold">{{ statsForm.value.totalPaiements }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-center p-3 shadow-sm">
+        <h5 class="card-title"><i class="bi bi-calendar-x-fill"></i> Total Absences</h5>
+        <p class="card-text fw-bold">{{ statsForm.value.totalAbsences }}</p>
+      </div>
+    </div>
+  </div>
+</div>

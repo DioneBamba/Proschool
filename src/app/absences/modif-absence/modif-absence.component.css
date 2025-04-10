@@ -1,0 +1,19 @@
+.motif-non-justifie {
+  background-color: #ffcccc; /* Rouge clair */
+  border: 2px solid red;
+}
+
+.motif-justifie {
+  background-color: #ccffcc; /* Vert clair */
+  border: 2px solid green;
+}
+
+.text-danger {
+  color: red;
+  font-weight: bold;
+}
+
+.text-success {
+  color: green;
+  font-weight: bold;
+}

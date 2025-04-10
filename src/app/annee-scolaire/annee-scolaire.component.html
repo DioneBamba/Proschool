@@ -1,0 +1,15 @@
+<!-- <label for="anneeScolaire">Année scolaire :</label>
+<select id="anneeScolaire" [(ngModel)]="selectedAnneeId" (change)="onChangeAnnee($event.target.value)">
+  <option *ngFor="let annee of anneesScolaires" [value]="annee.id">
+    {{ annee.annee }}
+  </option>
+</select> -->
+
+<h2>Années Scolaires</h2>
+<ul>
+  <li *ngFor="let annee of anneesScolaires">
+    {{ annee.annee }}
+  </li>
+</ul>
+
+

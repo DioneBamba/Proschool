@@ -1,0 +1,15 @@
+<!-- <h6 class="text-primary align-content-xl-end">Ajouter une Année Scolaire</h6> -->
+<form class="form-group" (submit)="ajouterAnneeScolaire()">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-1">
+      <input type="text" class="form-control" style="width: 200px;" [(ngModel)]="annee" name="annee" placeholder="Ex: 2024-2025" required>
+      <button class="btn btn-success ">
+        <i class="bi bi-plus-circle"></i> Ajouter une année
+      </button> 
+    </div>
+  </div>
+
+</form>
+
+
+

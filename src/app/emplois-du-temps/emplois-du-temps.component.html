@@ -1,0 +1,74 @@
+<!-- <div class="container mt-4">
+  <h2>Emplois du Temps</h2>
+<button class="btn btn-primary  " routerLink="/ajout-emplois-du-temps" class="btn btn-primary">Ajouter un emplois du temps</button>
+<table class="table table-bordered text-center mt-3">
+  <thead class="table-dark">
+    <tr>
+      <th>Jour</th>
+      <th>Heure début</th>
+      <th>Heure fin</th>
+      <th>Matière</th>
+      <th>Enseignant</th>
+      <th>Classe</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emploi of emplois">
+      <td>{{ emploi.jour }}</td>
+      <td>{{ emploi.heure_debut }}</td>
+      <td>{{ emploi.heure_fin }}</td>
+      <td>{{ emploi.matiere_nom }}</td>
+      <td>{{ emploi.enseignant_nom }}</td>
+      <td>{{ emploi.classe_nom }}</td>
+      <td>
+        <button class="btn btn-warning btn-sm mx-1" [routerLink]="['/modif-emplois-du-temps', emploi.id]">Modifier</button>
+        <button class="btn btn-danger btn-sm mx-1" (click)="supprimerEmplois(emploi.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+</div> -->
+
+
+<div class="container mt-4">
+
+  <button class="btn btn-primary  " routerLink="/ajout-emplois-du-temps" class="btn btn-primary">Ajouter un emplois du temps</button>
+  <h2>Liste des emplois du temps</h2>
+  <select [(ngModel)]="selectedClasse" (change)="onClasseChange()">
+    <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+  </select>
+
+  <div *ngIf="selectedClasse">
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>horaire/jour</th>
+          <th *ngFor="let jour of jours">{{ jour }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let heure of heures">
+          <td>{{ heure }}</td>
+          <td *ngFor="let jour of jours">{{ getMatiere(jour, heure) }}</td>
+        </tr> -->
+
+        <tr *ngFor="let h of heures">
+          <td>{{ h.affichage }}</td>
+          <td *ngFor="let jour of jours">{{ getMatiere(jour, h.heure) }}</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <div>
+      <!-- <button class="btn btn-warning btn-sm mx-1" (click)="retournerEmplois()">Modifier</button> -->
+      
+    </div>
+  </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,97 @@
+<!-- <div class="container mt-4">
+  <h2 class="mb-4 text-center">Modifier l'emploi du temps</h2>
+
+  <form [formGroup]="emploisForm" (ngSubmit)="modifierEmplois()" class="needs-validation" novalidate>
+    
+    <div class="mb-3">
+      <label class="form-label">Jour :</label>
+      <select formControlName="jour" class="form-control" [ngClass]="{'is-invalid': isInvalid('jour')}">
+        <option disabled value="">Sélectionnez</option>
+        <option value="Lundi">Lundi</option>
+        <option value="Mardi">Mardi</option>
+        <option value="Mercredi">Mercredi</option>
+        <option value="Jeudi">Jeudi</option>
+        <option value="Vendredi">Vendredi</option>
+        <option value="Samedi">Samedi</option>
+      </select>
+      <div *ngIf="isInvalid('jour')" class="invalid-feedback">Veuillez sélectionner un jour.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Heure Début :</label>
+      <input type="time" formControlName="heure_debut" class="form-control" [ngClass]="{'is-invalid': isInvalid('heure_debut')}">
+      <div *ngIf="isInvalid('heure_debut')" class="invalid-feedback">Veuillez renseigner l'heure de début.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Heure Fin :</label>
+      <input type="time" formControlName="heure_fin" class="form-control" [ngClass]="{'is-invalid': isInvalid('heure_fin')}">
+      <div *ngIf="isInvalid('heure_fin')" class="invalid-feedback">Veuillez renseigner l'heure de fin.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Matière :</label>
+      <select formControlName="matiere_id" class="form-control" [ngClass]="{'is-invalid': isInvalid('matiere_id')}" required>
+        <option value="" disabled>Sélectionnez une matière</option>
+        <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom }}</option>
+      </select>
+      <div *ngIf="isInvalid('matiere_id')" class="invalid-feedback">Veuillez sélectionner une matière.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Enseignant :</label>
+      <select formControlName="enseignant_id" class="form-control" [ngClass]="{'is-invalid': isInvalid('enseignant_id')}">
+        <option disabled value="">Sélectionnez un enseignant</option>
+        <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">{{ enseignant.prenom }} {{ enseignant.nom }}</option>
+      </select>
+      <div *ngIf="isInvalid('enseignant_id')" class="invalid-feedback">Veuillez sélectionner un enseignant.</div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Classe :</label>
+      <select formControlName="classe_id" class="form-control" [ngClass]="{'is-invalid': isInvalid('classe_id')}" required>
+        <option disabled value="">Sélectionnez une classe</option>
+        <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+      </select>
+      <div *ngIf="isInvalid('classe_id')" class="invalid-feedback">Veuillez sélectionner une classe.</div>
+    </div>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="emploisForm.invalid">Modifier</button>
+      <button type="button" class="btn btn-secondary" (click)="annuler()">Annuler</button>
+    </div>
+
+  </form>
+</div> -->
+
+
+
+<div class="container mt-3">
+  <div class="mb-3">
+    <select [(ngModel)]="selectedClasse" (change)="chargerEmplois()" class="form-select">
+      <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+    </select>
+  </div>
+  
+  <table class="table table-bordered text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>Heures</th>
+        <th *ngFor="let jour of jours">{{ jour }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let heure of heures">
+        <td>{{ heure }}</td>
+        <td *ngFor="let jour of jours">
+          <select [(ngModel)]="emploiTemps[jour][heure]" [attr.jour]="jour" [attr.heure]="heure">
+            <option value="">Sélectionner une matière</option>
+            <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom }}</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary" (click)="modifierEmplois()">Mettre à jour</button>
+</div>

@@ -1,0 +1,10 @@
+Array
+(
+    [prenom] => Cheikh Bamba
+    [nom] => DIONE
+    [date_naissance] => 1998-11-11
+    [lieu_naissance] => Touba toul
+    [telephone] => 765600909
+    [profession] => ProfesseurHG
+)
+Photo: uploads/avatar.png

@@ -1,0 +1,86 @@
+<!-- <div class="register-container">
+  <h2>Inscription</h2>
+  <form (ngSubmit)="register()">
+    <input type="text" [(ngModel)]="nom" name="nom" placeholder="Nom" required />
+    <input type="text" [(ngModel)]="prenom" name="prenom" placeholder="Prénom" required />
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Mot de passe" required />
+
+    <select [(ngModel)]="role" name="role">
+      <option value="admin">Admin</option>
+      <option value="eleve">Élève</option>
+      <option value="enseignant">Enseignant</option>
+      
+    </select>
+
+    <button type="submit">S'inscrire</button>
+  </form>
+
+  <a routerLink="/login">Déjà inscrit ? Connectez-vous</a>
+</div>
+<router-outlet></router-outlet>
+ -->
+
+
+
+ <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Inscription</h2>
+        
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+          <!-- Nom -->
+          <div class="form-group mb-3">
+            <label for="nom"><i class="fas fa-user"></i> Nom</label>
+            <input type="text" id="nom" class="form-control" formControlName="nom" placeholder="Entrez votre nom">
+            <small *ngIf="registerForm.get('nom')?.invalid && registerForm.get('nom')?.touched" class="text-danger">Le nom est requis.</small>
+          </div>
+
+          <!-- Prénom -->
+          <div class="form-group mb-3">
+            <label for="prenom"><i class="fas fa-user"></i> Prénom</label>
+            <input type="text" id="prenom" class="form-control" formControlName="prenom" placeholder="Entrez votre prénom">
+            <small *ngIf="registerForm.get('prenom')?.invalid && registerForm.get('prenom')?.touched" class="text-danger">Le prénom est requis.</small>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group mb-3">
+            <label for="email"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email" placeholder="Entrez votre email">
+            <small *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-danger">Veuillez entrer un email valide.</small>
+          </div>
+
+          <!-- Mot de passe -->
+          <div class="form-group mb-3">
+            <label for="password"><i class="fas fa-lock"></i> Mot de passe</label>
+            <input type="password" id="password" class="form-control" formControlName="password" placeholder="Entrez votre mot de passe">
+            <small *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-danger">
+              Le mot de passe doit contenir au moins 6 caractères.
+            </small>
+          </div>
+
+          <!-- Rôle -->
+          <div class="form-group mb-3">
+            <label for="role"><i class="fas fa-user-tag"></i> Rôle</label>
+            <select id="role" class="form-control" formControlName="role">
+              <option value="admin">Admin</option>
+              <option value="eleve">Élève</option>
+              <option value="enseignant">Enseignant</option>
+            </select>
+          </div>
+
+          <!-- Bouton Inscription -->
+          <button type="submit" class="btn btn-primary w-100 mt-3" [disabled]="registerForm.invalid">
+            <i class="fas fa-user-plus"></i> S'inscrire
+          </button>
+        </form>
+
+        <!-- Lien de connexion -->
+        <div class="text-center mt-3">
+          <a routerLink="/login">Déjà inscrit ? Connectez-vous</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

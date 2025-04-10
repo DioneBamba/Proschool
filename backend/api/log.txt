@@ -1,0 +1,7 @@
+Array
+(
+    [id] => 8
+    [nom] => Mathématiques
+    [description] => connaissance claire en mathématque
+    [annee_scolaire_id] => 2
+)

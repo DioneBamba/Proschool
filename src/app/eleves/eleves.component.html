@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h2 class="text-center">Liste des Élèves</h2>
+  <button class="btn btn-success mb-4" type="submit" [routerLink]="['/ajout-eleve']">Ajouter un élève</button>
+  <table class="table table-bordered text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Date de Naissance</th>
+        <th>Classe</th>
+        <th>Groupe</th>
+        <th>Nationalité</th>
+        <th>Adresse</th>
+        <th>Téléphone</th>
+        <th>Sexe</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let eleve of eleves">
+        <td>{{ eleve.id }}</td>
+        <td>{{ eleve.prenom }}</td>
+        <td>{{ eleve.nom }}</td>
+        <td>{{ eleve.date_naissance }}</td>
+        <td>{{ eleve.nom_classe || 'Non attribué' }}</td>
+        <td>{{ eleve.groupe }}</td>
+        <td>{{ eleve.nationalite }}</td>
+        <td>{{ eleve.adresse }}</td>
+        <td>{{ eleve.telephone }}</td>
+        <td>{{ eleve.sexe }}</td>
+        <td>
+          <button  [routerLink]="['/modif-eleve', eleve.id]" class=" btn btn-warning btn-sm mx-1">Modifier</button>
+          <button class=" btn btn-danger btn-sm mx-1" (click)="supprimerEleve(eleve.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<table class="table table-bordered text-center">
+  <thead class="table-dark">
+    <tr>
+    
+      <th>Classe</th>
+      <th>Nombre d'élèves</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stat of statsParClasse">
+      <td>{{ stat.nom_classe }}</td>
+      <td>{{ stat.nb_eleves }}</td>
+    </tr>
+  </tbody>
+  
+</table>
+

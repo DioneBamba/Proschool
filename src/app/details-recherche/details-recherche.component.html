@@ -1,0 +1,108 @@
+<!-- <div *ngIf="details">
+  <h2>Détails</h2>
+  <p><strong>Nom :</strong> {{ details.nom }}</p>
+  <p *ngIf="details.prenom"><strong>Prénom :</strong> {{ details.prenom }}</p>
+  <p *ngIf="details.classe"><strong>Classe :</strong> {{ details.classe }}</p>
+  <p *ngIf="details.enseignant"><strong>Enseignant :</strong> {{ details.enseignant }}</p>
+  <p *ngIf="details.scolarite"><strong>Statut paiement :</strong> {{ details.scolarite }}</p>
+</div>
+<div *ngIf="!details">
+  <p>Chargement...</p>
+</div> -->
+
+<!-- 
+<div *ngIf="selectedResult">
+  <h3>Détails :</h3>
+
+  
+  <div *ngIf="selectedResult.cout_scolarite !== undefined">
+    <p><strong>Nom :</strong> {{ selectedResult.nom }}</p>
+    <p><strong>Prénom :</strong> {{ selectedResult.prenom }}</p>
+    <p><strong>Date de naissance :</strong> {{ selectedResult.date_naissance }}</p>
+    <p><strong>Classe :</strong> {{ selectedResult.classe }}</p>
+    <p><strong>Groupe :</strong> {{ selectedResult.groupe }}</p>
+    <p><strong>Nationalité :</strong> {{ selectedResult.nationalite }}</p>
+    <p><strong>Adresse :</strong> {{ selectedResult.adresse }}</p>
+    <p><strong>Téléphone :</strong> {{ selectedResult.telephone }}</p>
+    <p><strong>Sexe :</strong> {{ selectedResult.sexe }}</p>
+    <p><strong>Coût scolarité :</strong> {{ selectedResult.cout_scolarite }}</p>
+    <p><strong>Montant payé :</strong> {{ selectedResult.montant_paye }}</p>
+    <p><strong>Reste à payer :</strong> {{ selectedResult.reste_a_payer }}</p>
+    <p><strong>État scolarité :</strong> {{ selectedResult.etat_scolarite }}</p>
+  </div>
+  
+
+  <div *ngIf="selectedResult.profession !== undefined">
+    <p><strong>Nom :</strong> {{ selectedResult.nom }}</p>
+    <p><strong>Prénom :</strong> {{ selectedResult.prenom }}</p>
+    <p><strong>Date de naissance :</strong> {{ selectedResult.date_naissance }}</p>
+    <p><strong>Lieu de naissance :</strong> {{ selectedResult.lieu_naissance }}</p>
+    <p><strong>Téléphone :</strong> {{ selectedResult.telephone }}</p>
+    <p><strong>Profession :</strong> {{ selectedResult.profession }}</p>
+  </div>
+
+  
+  <div *ngIf="selectedResult.date_paiement !== undefined">
+    <p><strong>Nom :</strong> {{ selectedResult.nom }}</p>
+    <p><strong>Prénom :</strong> {{ selectedResult.prenom }}</p>
+    <p><strong>Coût scolarité :</strong> {{ selectedResult.cout_scolarite }}</p>
+    <p><strong>Montant payé :</strong> {{ selectedResult.montant_paye }}</p>
+    <p><strong>Reste à payer :</strong> {{ selectedResult.reste_a_payer }}</p>
+    <p><strong>État scolarité :</strong> {{ selectedResult.etat_scolarite }}</p>
+    <p><strong>Date de paiement :</strong> {{ selectedResult.date_paiement }}</p>
+  </div>
+
+  
+  <div *ngIf="selectedResult.total_eleves !== undefined">
+    <p><strong>Nom de la classe :</strong> {{ selectedResult.nom }}</p>
+    <p><strong>Total élèves :</strong> {{ selectedResult.total_eleves }}</p>
+    <p><strong>Total filles :</strong> {{ selectedResult.total_filles }}</p>
+    <p><strong>Total garçons :</strong> {{ selectedResult.total_garcons }}</p>
+  </div>
+</div>
+<div *ngIf="!selectedResult">
+  <p>Chargement...</p>
+</div> -->
+
+
+<!-- Détails sélectionnés -->
+<div *ngIf="selectedResult" class="container mt-4">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Détails :</h3>
+    </div>
+    <div class="card-body">
+      <!-- Élève -->
+      <div *ngIf="selectedResult.cout_scolarite !== undefined">
+        <p><strong><i class="bi bi-person"></i> Nom :</strong> {{ selectedResult.nom }}</p>
+        <p><strong><i class="bi bi-person-fill"></i> Prénom :</strong> {{ selectedResult.prenom }}</p>
+        <p><strong><i class="bi bi-calendar"></i> Date de naissance :</strong> {{ selectedResult.date_naissance }}</p>
+        <p><strong><i class="bi bi-mortarboard"></i> Classe :</strong> {{ selectedResult.classe }}</p>
+        <p><strong><i class="bi bi-globe"></i> Nationalité :</strong> {{ selectedResult.nationalite }}</p>
+        <p><strong><i class="bi bi-house"></i> Adresse :</strong> {{ selectedResult.adresse }}</p>
+        <p><strong><i class="bi bi-telephone"></i> Téléphone :</strong> {{ selectedResult.telephone }}</p>
+        <p><strong><i class="bi bi-cash"></i> Coût scolarité :</strong> {{ selectedResult.cout_scolarite }}</p>
+        <p><strong><i class="bi bi-wallet"></i> Montant payé :</strong> {{ selectedResult.montant_paye }}</p>
+        <p><strong><i class="bi bi-currency-exchange"></i> Reste à payer :</strong> {{ selectedResult.reste_a_payer }}</p>
+      </div>
+      
+      <!-- Enseignant -->
+      <div *ngIf="selectedResult.profession !== undefined">
+        <p><strong><i class="bi bi-person-badge"></i> Nom :</strong> {{ selectedResult.nom }}</p>
+        <p><strong><i class="bi bi-person-lines-fill"></i> Prénom :</strong> {{ selectedResult.prenom }}</p>
+        <p><strong><i class="bi bi-calendar-check"></i> Date de naissance :</strong> {{ selectedResult.date_naissance }}</p>
+        <p><strong><i class="bi bi-briefcase"></i> Profession :</strong> {{ selectedResult.profession }}</p>
+      </div>
+      
+      <!-- Scolarité -->
+      <div *ngIf="selectedResult.date_paiement !== undefined">
+        <p><strong><i class="bi bi-cash-coin"></i> Coût scolarité :</strong> {{ selectedResult.cout_scolarite }}</p>
+        <p><strong><i class="bi bi-credit-card"></i> Montant payé :</strong> {{ selectedResult.montant_paye }}</p>
+        <p><strong><i class="bi bi-calendar-event"></i> Date de paiement :</strong> {{ selectedResult.date_paiement }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!selectedResult" class="text-center mt-3">
+  <p class="text-muted">Chargement...</p>
+</div>

@@ -1,0 +1,63 @@
+<div class="container mt-4">
+  <form class="fporm-group me-4" [formGroup]="eleveForm" (ngSubmit)="onSubmit()">
+    <div class="me-3">
+      <label class="form-label">Prénom : </label>
+      <input type="text" class="form-control md-3" formControlName="prenom" placeholder="Prénom" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Nom : </label>
+      <input type="text" class="form-control" formControlName="nom" placeholder="Nom" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Date de Naissance: </label>
+      <input type="date" class="form-control" formControlName="date_naissance" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">ID classe: </label>
+      <select class="form-select" formControlName="classe_id" required>
+        <option *ngFor="let classe of classes; trackBy: trackById" [value]="classe.id">
+          {{ classe.nom_classe }}
+        </option>
+      </select>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Groupe : </label>
+      <input type="text" class="form-control" formControlName="groupe" placeholder="Groupe" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Nationalité : </label>
+      <input type="text" class="form-control" formControlName="nationalite" placeholder="Nationalité" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Adresse : </label>
+      <input type="text" class="form-control" formControlName="adresse" placeholder="Adresse" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Téléphone : </label>
+      <input type="text" class="form-control" formControlName="telephone" placeholder="Téléphone" required>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Sexe : </label>
+      <select class="form-select" formControlName="sexe" required>
+        <option  value="M">Masculin</option>
+        <option value="F">Féminin</option>
+      </select>
+    </div>
+    <div class="me-3">
+      <label class="form-label">Année Scolaire : </label>
+      <select class="form-select" formControlName="annee_scolaire_id" required>
+        <option *ngFor="let annee of anneesScolaires; trackBy: trackById" [value]="annee.id">
+          {{ annee.nom }}
+        </option>
+      </select>
+    </div>
+  
+    <button class="btn btn-success mt-3 me-4" type="submit">Enregistrer les modifications</button>
+    <button class="btn btn-primary mt-3" type="submit" [routerLink]="['/eleves']">Retour</button>
+  </form>
+</div>
+
+
+
+
+

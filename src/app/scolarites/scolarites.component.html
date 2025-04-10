@@ -1,0 +1,55 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Liste des Scolarités</h2>
+  <div class="text-center mt-4">
+    <a class="btn btn-success" routerLink="/ajout-scolarite">
+      <i class="bi bi-plus-circle"></i> Ajouter une scolarité
+    </a>
+  </div>
+  <table class="table table-striped table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>Élève</th>
+        <th>Date de naissance</th>
+        <th>Sexe</th>
+        <th>Classe</th>
+        <th>Coût</th>
+        <th>Montant Payé</th>
+        <th>Reste à Payer</th>
+        <th>Date paiement</th>
+        <th>État</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let scolarite of scolarites">
+        <td>{{ scolarite.eleve_nom || 'N/A' }} </td>
+        <td>{{ scolarite.date_naissance || 'N/A' }}</td>
+        <td>{{ scolarite.sexe || 'N/A' }}</td>
+        <td>{{ scolarite.classe_nom || 'N/A' }}</td>
+        <td>{{ scolarite.cout_scolarite | number: '1.0-0'}} Fcfa</td>
+        <td>{{ scolarite.montant_paye | number: '1.0-0'}} Fcfa</td>
+        <td>{{ scolarite.reste_a_payer | number: '1.0-0'}} Fcfa</td>
+        <td>{{ scolarite.date_paiement || 'N/A' }}</td>
+
+        <td>
+          <span class="badge" [ngClass]="{
+            'bg-success': scolarite.etat_scolarite === 'payé',
+            'bg-danger': scolarite.etat_scolarite === 'non payé',
+            'bg-warning': scolarite.etat_scolarite === 'partiellement payé'
+          }">
+            {{ scolarite.etat_scolarite ? scolarite.etat_scolarite : 'Valeur manquante' }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-primary btn-sm me-2" [routerLink]="['/modif-scolarite', scolarite.id]">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="supprimerScolarite(scolarite.id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+</div>

@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Ajouter une Matière</h2>
+  <div class="card shadow-sm p-4">
+    <form [formGroup]="matiereForm" (ngSubmit)="ajouterMatiere()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nom">Nom de la matière:</label>
+          <input id="nom" formControlName="nom" required placeholder="Ex: Mathématiques" />
+        </div>
+        <div class="col-md-6">
+          <label for="description">Description (optionnelle):</label>
+          <textarea id="description" formControlName="description" placeholder="Ajoutez une description"></textarea>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <button type="submit" class="btn btn-primary me-2" [disabled]="matiereForm.invalid"><i class="bi bi-plus-circle"></i>Ajouter</button>
+          <button type="button" (click)="annuler()" class="btn btn-secondary"><i class="bi bi-arrow-left"></i>Annuler</button>
+        </div>
+      </div>     
+    </form>
+  </div>
+</div>

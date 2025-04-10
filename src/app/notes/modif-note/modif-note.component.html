@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Modifier une Note</h2>
+
+  <div class="card shadow-sm p-4">
+    <form [formGroup]="noteForm" (ngSubmit)="modifierNote()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label" for="eleve_id">Élève</label>
+          <select class="form-select" formControlName="eleve_id" (change)="onEleveChange()" required>
+            <option *ngFor="let eleve of eleves" [value]="eleve.id">{{ eleve.prenom }} {{ eleve.nom }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="classe_id">Classe</label>
+          <!-- <select class="form-select" formControlName="classe_id" required>
+            <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+          </select> -->
+          <input id="classe_id" type="text" class="form-control" [value]="getNomClasse()" readonly />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="matiere_id">Matière</label>
+          <select class="form-select" formControlName="matiere_id" required>
+            <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label" for="enseignant_id">Enseignant</label>
+          <select class="form-select" formControlName="enseignant_id" required>
+            <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+              {{ enseignant.prenom }} {{ enseignant.nom }}</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Semestre</label>
+          <select formControlName="semestre" class="form-select" required>
+            <option value="1">Semestre 1</option>
+            <option value="2">Semestre 2</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Devoir 1</label>
+          <input type="number" formControlName="devoir1" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Devoir 2</label>
+          <input type="number" formControlName="devoir2" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Composition</label>
+          <input type="number" formControlName="composition" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Coefficient</label>
+          <input type="number" formControlName="coefficient" class="form-control" required>
+        </div>
+      </div>
+
+
+      <div class="d-flex justify-content-end mt-3">
+        <button type="submit" class="btn btn-warning me-2" [disabled]="noteForm.invalid">
+          <i class="bi bi-pencil"></i> Modifier
+        </button>
+        <a routerLink="/notes" class="btn btn-secondary">
+          <i class="bi bi-arrow-left"></i> Annuler
+        </a>
+      </div>
+    </form>
+  </div>
+</div>

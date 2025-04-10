@@ -1,0 +1,93 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Liste des Notes</h2>
+
+  <div class="d-flex justify-content-between mb-3">
+    <input type="text" class="form-control w-50" placeholder="Rechercher une note..." 
+    (input)="filtrerNotes($event)">
+    <a routerLink="/ajout-note" class="btn btn-primary">Ajouter une Note</a>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Élève</th>
+          <th>Classe</th>
+          <th>Matière</th>
+          <th>Enseignant</th>
+          <th>Semestre</th>
+          <th>Devoir 1</th>
+          <th>Devoir 2</th>
+          <th>Composition</th>
+          <th>Coefficient</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let note of notes">
+        <!-- <tr *ngFor="let note of notesFiltrees"> -->
+          <td>{{ note.eleve_nom }} {{ note.eleve_prenom }}</td>
+          <td>{{ note.nom_classe }}</td>
+          <td>{{ note.matiere_nom }}</td>
+          <td>{{ note.enseignant_nom }}</td>
+          <td>{{ note.semestre }}</td>
+          <td>{{ note.devoir1 || '-' }}</td>
+          <td>{{ note.devoir2 || '-' }}</td>
+          <td>{{ note.composition || '-' }}</td>
+          <td>{{ note.coefficient }}</td>
+          <td>
+            <a [routerLink]="['/modif-note', note.id]" class="btn btn-warning btn-sm mx-1">
+              <i class="bi bi-pencil"></i>
+            </a>
+            <button (click)="supprimerNote(note.id)" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div>
+  <tr *ngFor="let note of notesFiltrees">
+    <td>{{ note.eleve_nom }}</td>
+    <td>{{ note.classe_nom }}</td>
+    <td>{{ note.matiere_nom }}</td>
+    <td>
+      <button (click)="naviguerVersBulletin()">Voir le bulletin</button>
+    </td>
+  </tr>
+  
+</div>
+<select [(ngModel)]="selectedEleve" (change)="onEleveChange()">
+  <option *ngFor="let eleve of getElevesAvecNotes()" [value]="eleve.id">
+    {{ eleve.nom }} {{ eleve.prenom }}
+  </option>
+</select>
+<button (click)="afficherNotesRegroupees()" (click)="naviguerVersBulletin()" class="btn btn-primary" [disabled]="!selectedEleve">
+  Voir Bulletin
+</button>
+<p *ngIf="!selectedEleve">Aucun élève sélectionné</p>
+<div *ngIf="notesRegroupees.length > 0">
+  <h3>Bulletin de {{ notesRegroupees[0].eleve_prenom }} {{ notesRegroupees[0].eleve_nom }}</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Matière</th>
+        <th>Devoir 1</th>
+        <th>Devoir 2</th>
+        <th>Composition</th>
+        <th>Coefficient</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of notesRegroupees">
+        <td>{{ note.matiere_nom }}</td>
+        <td>{{ note.devoir1 }}</td>
+        <td>{{ note.devoir2 }}</td>
+        <td>{{ note.composition }}</td>
+        <td>{{ note.coefficient }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

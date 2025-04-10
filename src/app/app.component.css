@@ -1,0 +1,6 @@
+/* app.component.css */
+.content {
+  margin-left: 200px; /* Pour faire de la place à la sidebar */
+  margin-top: 5px;  /* Pour que la navbar ne chevauche pas le contenu */
+  padding: 20px;
+}

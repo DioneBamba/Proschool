@@ -1,0 +1,40 @@
+<div class="container mt-4">
+  <h2 class="text-center">Liste des Enseignants</h2>
+<table class="table table-bordered text-center">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Date de naissance</th>
+      <th>Lieu de naissance</th>
+      <th>Téléphone</th>
+      <th>Profession</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let enseignant of enseignants">
+      <td>{{ enseignant.id }}</td>
+      <td>{{ enseignant.prenom }}</td>
+      <td>{{ enseignant.nom }}</td>
+      <td>{{ enseignant.date_naissance }}</td>
+      <td>{{ enseignant.lieu_naissance }}</td>
+      <td>{{ enseignant.telephone }}</td>
+      <td>{{ enseignant.profession }}</td>
+      <!-- <td><img [src]="'http://localhost/proSchool/backend/api/' + enseignant.photo" alt="Photo" width="50"></td>
+      <td *ngIf="!enseignant.photo">
+        <span>Aucune photo</span>
+      </td> -->
+      <td>
+        <button class="btn btn-warning btn-sm mt-3 me-2" [routerLink]="['/modif-enseignant', enseignant.id]">
+          <i class="bi bi-pencil"></i>Modifier</button>
+        <button class="btn btn-danger btn-sm mt-3" (click)="supprimerEnseignant(enseignant.id)">
+          <i class="bi bi-trash"></i>Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-primary" [routerLink]="['/ajout-enseignant']">Ajouter Enseignant</button>
+
+</div>

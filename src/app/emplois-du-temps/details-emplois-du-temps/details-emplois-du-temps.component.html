@@ -1,0 +1,27 @@
+
+<table class="table table-bordered">
+  <thead class="table-dark">
+    <tr>
+      <th>Heures</th>
+      <th *ngFor="let jour of jours">{{ jour }}</th>
+      <!-- <th >Enseignants</th> -->
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let heure of heures">
+      <td>{{ heure }}</td>
+      <td *ngFor="let jour of jours">
+        <!-- {{ emplois[jour]?.[heure]?.matiere?.nom || '-' }} -->
+        {{ emplois[jour] && emplois[jour][heure] ? emplois[jour][heure].matiere?.nom : '-' }}
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+<div>
+  <button class="btn btn-warning btn-sm mx-1" (click)="retournerEmplois()">Modifier</button>
+  
+</div>
+
+

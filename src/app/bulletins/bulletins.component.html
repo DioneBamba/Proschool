@@ -1,0 +1,35 @@
+
+<div *ngIf="notes.length > 0" >
+  <h2>Bulletin de {{ notes[0].eleve_prenom }} {{ notes[0].eleve_nom }}</h2>
+  <!-- <p><strong>Classe :</strong> {{ eleve.nom_classe }}</p> -->
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered text-center">
+    <thead class="table-dark">
+      <tr>
+        <th>Matière</th>
+        <th>Devoir 1</th>
+        <th>Devoir 2</th>
+        <th>Composition</th>
+        <th>Coefficient</th>
+        <!-- <th>Moyenne/20</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of notes">
+        <td>{{ note.matiere_nom }}</td>
+        <td>{{ note.devoir1 }}</td>
+        <td>{{ note.devoir2 }}</td>
+        <td>{{ note.composition }}</td>
+        <td>{{ note.coefficient }}</td>
+        <!-- <td>{{ (note.devoir1 + note.devoir2 + note.composition) / 3 | number:'1.2-2' }}</td> -->
+      </tr>
+    </tbody>
+    
+        <button (click)="generateBulletinPremier(eleve, notes)" class="btn btn-primary mt-4  px-4">
+          <i class="bi bi-download"></i>Télécharger le Bulletin
+        </button>
+      
+  </table>
+
+</div>

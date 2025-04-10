@@ -1,0 +1,99 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Ajouter un Émargement</h2>
+  <form [formGroup]="emargementForm" (ngSubmit)="ajouterEmargement()">
+    <!-- <div class="form-group mb-3">
+      <label for="annee_scolaire_id">
+        <i class="bi bi-calendar-check"></i> Année Scolaire
+      </label>
+      <select
+        class="form-select"
+        id="annee_scolaire_id"
+        formControlName="annee_scolaire_id"
+      >
+        <option *ngFor="let annee of anneesScolaires" [value]="annee.id">
+          {{ annee.libelle }}
+        </option>
+      </select>
+    </div> -->
+
+    <div class="form-group mb-3">
+      <label for="matiere_id">
+        <i class="bi bi-book"></i> Matière
+      </label>
+      <select
+        class="form-select"
+        id="matiere_id"
+        formControlName="matiere_id"
+      >
+        <option *ngFor="let matiere of matieres" [value]="matiere.id">
+          {{ matiere.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="classe_id">
+        <i class="bi bi-people"></i> Classe
+      </label>
+      <select class="form-select" id="classe_id" formControlName="classe_id">
+        <option *ngFor="let classe of classes" [value]="classe.id">
+          {{ classe.nom_classe }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="enseignant_id">
+        <i class="bi bi-person"></i> Enseignant
+      </label>
+      <select
+        class="form-select"
+        id="enseignant_id"
+        formControlName="enseignant_id"
+      >
+        <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">
+          {{ enseignant.prenom }}{{ enseignant.nom }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="titre_cours">
+        <i class="bi bi-file-text"></i> Titre du Cours
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="titre_cours"
+        formControlName="titre_cours"
+        placeholder="Titre du cours"
+      />
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="date_heure">
+        <i class="bi bi-clock"></i> Date et Heure
+      </label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        id="date_heure"
+        formControlName="date_heure"
+      />
+    </div>
+
+    <div class="form-group mb-4">
+      <label for="semestre">
+        <i class="bi bi-calendar"></i> Semestre
+      </label>
+      <select class="form-select" id="semestre" formControlName="semestre">
+        <option value="1">Semestre 1</option>
+        <option value="2">Semestre 2</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100" [disabled]="emargementForm.invalid">
+      <i class="bi bi-plus-circle"></i> Ajouter
+    </button>
+  </form>
+</div>

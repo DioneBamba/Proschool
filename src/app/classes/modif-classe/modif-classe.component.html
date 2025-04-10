@@ -1,0 +1,53 @@
+<!-- 
+ <h2>Ajouter une classe</h2>
+<form [formGroup]="classeForm" (ngSubmit)="modifierClasse()">
+  <label for="nom_classe">Nom de la classe</label>
+  <input id="nom_classe" formControlName="nom_classe" type="text" required />
+
+  <label for="annee_scolaire_id">Année scolaire</label>
+  <select id="annee_scolaire_id" formControlName="annee_scolaire_id" required>
+    <option *ngFor="let annee of anneesScolaires" [value]="annee.id">{{ annee.libelle }}</option>
+  </select>
+
+  <button type="submit" [disabled]="classeForm.invalid">Ajouter</button>
+  <button type="button" (click)="annuler()">Annuler</button>
+</form>
+ -->
+
+
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Nodifier une classe</h2>
+  <div class="card shadow-sm p-4">
+    <form class="form-group" [formGroup]="classeForm" (ngSubmit)="modifierClasse()">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nom_classe" class="form-label">Nom de la classe</label>
+          <input id="nom_classe" class="form-control" formControlName="nom_classe" type="text" required />
+      
+          <!-- <label for="annee_scolaire_id">Année scolaire</label>
+          <select class="form-select" id="annee_scolaire_id" formControlName="annee_scolaire_id" required>
+            <option *ngFor="let annee of anneesScolaires" [value]="annee.id">{{ annee.libelle }}</option>
+          </select> -->
+          <!-- <div class="col-md-6">
+            <p>
+              <strong>Année scolaire sélectionnée :</strong>
+              {{ anneeScolaireLibelle }}
+            </p>
+        
+            <p *ngIf="!anneeScolaireId" class="text-danger">
+              Aucune année scolaire sélectionnée. Veuillez choisir une année.
+            </p>
+          </div> -->
+          <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary me-2" [disabled]="classeForm.invalid"><i class="bi bi-plus-circle"></i>Ajouter</button>
+            <button type="button" (click)="annuler()"class="btn btn-secondary">
+              <i class="bi bi-arrow-left"></i>Annuler</button>
+          </div>
+          
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+

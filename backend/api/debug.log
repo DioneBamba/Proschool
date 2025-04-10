@@ -1,0 +1,14 @@
+Array
+(
+    [id] => 8
+    [jour] => Samedi
+    [heure_debut] => 17:00:00
+    [heure_fin] => 18:00:00
+    [date_absence] => 2025-01-15
+    [eleve_id] => 8
+    [matiere_id] => 5
+    [enseignant_id] => 15
+    [classe_id] => 8
+    [justifie] => Oui
+    [motif_justifie] => Il avait eu un accident
+)

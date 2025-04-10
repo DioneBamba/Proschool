@@ -1,0 +1,102 @@
+Requête reçue : Array
+(
+    [action] => getEmploisById
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => getEmploisById
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => getEmploisById
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmplois
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmplois
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmplois
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => modifierEmploi
+    [id] => 3
+)
+
+Requête reçue : Array
+(
+    [action] => getEmploisById
+    [id] => 3
+)
+
+Requête exécutée : UPDATE emplois_temps SET 
+                                jour = :jour, 
+                                heure_debut = :heure_debut, 
+                                heure_fin = :heure_fin, 
+                                matiere_id = :matiere_id, 
+                                enseignant_id = :enseignant_id, 
+                                classe_id = :classe_id 
+                            WHERE id = :id
+ID : 1
+Requête exécutée : UPDATE emplois_temps SET 
+                                jour = :jour, 
+                                heure_debut = :heure_debut, 
+                                heure_fin = :heure_fin, 
+                                matiere_id = :matiere_id, 
+                                enseignant_id = :enseignant_id, 
+                                classe_id = :classe_id 
+                            WHERE id = :id
+ID : 1

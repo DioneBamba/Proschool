@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <button class="btn btn-success btn-sm" type="click" [routerLink]="['/ajout-absence']">Ajouter une absence</button>
+  <input type="text" class="form-control mt-2" placeholder="Rechercher..." [(ngModel)]="searchText">
+  <h2 class="text-center">List des absences </h2>
+  <table class="table table-bordered text-center ">
+    <thead class="table-dark">
+      <tr>
+        <th>Élève</th>
+        <th>Matière</th>
+        <th>Classe</th>
+        <th>Jour</th>
+        
+        <th>Heure Début</th>
+        <th>Heure Fin</th>
+        <th>Date Absence</th>
+        <th>Enseignant</th>
+        <th>Justifié</th>
+        <th>Motif de justication</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody >
+      <tr *ngFor="let absence of absences">
+        <td>{{ absence.eleve_prenom }} {{ absence.eleve_nom }}</td>
+        <td>{{ absence.matiere_nom }}</td>
+        <td>{{ absence.nom_classe }}</td>
+        <td>{{ absence.jour }}</td>
+        <td>{{ absence.heure_debut }}</td>
+        <td>{{ absence.heure_fin }}</td>
+        <td>{{ absence.date_absence }}</td>
+        <td>{{ absence.enseignant_prenom }} {{ absence.enseignant_nom }}</td>
+        <td [ngClass]="{'text-danger': absence.justifie === 'Non', 'text-success': absence.justifie === 'Oui'}">
+          {{ absence.justifie === 'Non' ? 'Non Justifié' : 'Oui' }}
+        </td>
+        <td>{{ absence.motif_justifie || '---' }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm mb-1" [routerLink]="['/modif-absence', absence.id]">Modifier</button>
+          <button class="btn btn-danger btn-sm" (click)="supprimerAbsence(absence.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #loading>
+    <p>Chargement des absences...</p>
+  </ng-template>
+  <ng-template #noData>
+    <tr><td colspan="5">Aucune absence enregistrée.</td></tr>
+  </ng-template>
+
+  <pagination-controls (pageChange)="page = $event"></pagination-controls>
+
+</div>

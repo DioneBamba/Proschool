@@ -1,0 +1,171 @@
+<!-- <div class="container mt-4">
+  <h2 class="mb-4">Modifier une Absence</h2>
+
+  <form (ngSubmit)="modifierAbsence()">
+    <div class="form-group">
+      <label for="eleve">Élève</label>
+      <select class="form-control" id="eleve" [(ngModel)]="absence.eleve_id" name="eleve_id" required>
+        <option value="">Sélectionnez un élève</option>
+        <option *ngFor="let eleve of eleves" [value]="eleve.id">{{ eleve.prenom }} {{ eleve.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="matiere">Matière</label>
+      <select class="form-control" id="matiere" [(ngModel)]="absence.matiere_id" name="matiere_id" required>
+        <option value="">Sélectionnez une matière</option>
+        <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="classe">Classe</label>
+      <select class="form-control" id="classe" [(ngModel)]="absence.classe_id" name="classe_id" required>
+        <option value="">Sélectionnez une classe</option>
+        <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="jour">Jour</label>
+      <select class="form-control" id="jour" [(ngModel)]="absence.jour" name="jour" required>
+        <option value="">Sélectionnez un jour</option>
+        <option value="Lundi">Lundi</option>
+        <option value="Mardi">Mardi</option>
+        <option value="Mercredi">Mercredi</option>
+        <option value="Jeudi">Jeudi</option>
+        <option value="Vendredi">Vendredi</option>
+        <option value="Samedi">Samedi</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="heureDebut">Heure Début</label>
+      <input type="time" class="form-control" id="heureDebut" [(ngModel)]="absence.heure_debut" name="heure_debut" required>
+    </div>
+
+    <div class="form-group">
+      <label for="heureFin">Heure Fin</label>
+      <input type="time" class="form-control" id="heureFin" [(ngModel)]="absence.heure_fin" name="heure_fin" required>
+    </div>
+
+    <div class="form-group">
+      <label for="enseignant">Enseignant</label>
+      <select class="form-control" id="enseignant" [(ngModel)]="absence.enseignant_id" name="enseignant_id" required>
+        <option value="">Sélectionnez un enseignant</option>
+        <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">{{ enseignant.prenom }} {{ enseignant.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="justifie">Justifié</label>
+      <select class="form-control" id="justifie" [(ngModel)]="absence.justifie" name="justifie" required>
+        <option value="">Sélectionnez une option</option>
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="absence.justifie === 'Oui'">
+      <label for="motif">Motif (si justifié)</label>
+      <textarea class="form-control" id="motif" [(ngModel)]="absence.motif_justifie" name="motif_justifie" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm mt-3">Modifier</button>
+    <button type="button" class="btn btn-secondary btn-sm mt-3" (click)="annulerModification()">Annuler</button>
+  </form>
+</div> -->
+
+<div class="container mt-4">
+  <h2 class="mb-4">Modifier une Absence</h2>
+
+  <form [formGroup]="absenceForm" (ngSubmit)="modifierAbsence()">
+    
+    <div class="form-group">
+      <label for="eleve">Élève</label>
+      <select class="form-control" id="eleve" formControlName="eleve_id">
+        <option value="">Sélectionnez un élève</option>
+        <option *ngFor="let eleve of eleves" [value]="eleve.id">{{ eleve.prenom }} {{ eleve.nom }}</option>
+      </select>
+      <div *ngIf="absenceForm.controls['eleve_id'].invalid && absenceForm.controls['eleve_id'].touched" class="text-danger">
+        Ce champ est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="matiere">Matière</label>
+      <select class="form-control" id="matiere" formControlName="matiere_id">
+        <option value="">Sélectionnez une matière</option>
+        <option *ngFor="let matiere of matieres" [value]="matiere.id">{{ matiere.nom }}</option>
+      </select>
+      <div *ngIf="absenceForm.controls['matiere_id'].invalid && absenceForm.controls['matiere_id'].touched" class="text-danger">
+        Ce champ est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="classe">Classe</label>
+      <select class="form-control" id="classe" formControlName="classe_id">
+        <option value="">Sélectionnez une classe</option>
+        <option *ngFor="let classe of classes" [value]="classe.id">{{ classe.nom_classe }}</option>
+      </select>
+      <div *ngIf="absenceForm.controls['classe_id'].invalid && absenceForm.controls['classe_id'].touched" class="text-danger">
+        Ce champ est requis.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="jour">Jour</label>
+      <select class="form-control" id="jour" formControlName="jour">
+        <option value="">Sélectionnez un jour</option>
+        <option value="Lundi">Lundi</option>
+        <option value="Mardi">Mardi</option>
+        <option value="Mercredi">Mercredi</option>
+        <option value="Jeudi">Jeudi</option>
+        <option value="Vendredi">Vendredi</option>
+        <option value="Samedi">Samedi</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="heureDebut">Heure Début</label>
+      <input type="time" class="form-control" id="heureDebut" formControlName="heure_debut">
+    </div>
+
+    <div class="form-group">
+      <label for="heureFin">Heure Fin</label>
+      <input type="time" class="form-control" id="heureFin" formControlName="heure_fin">
+    </div>
+    <div class="form-group">
+      <label for="dateAbsence">Date absence</label>
+      <input type="date" class="form-control" id="dateAbsence" formControlName="date_absence">
+    </div>
+
+    <div class="form-group">
+      <label for="enseignant">Enseignant</label>
+      <select class="form-control" id="enseignant" formControlName="enseignant_id">
+        <option value="">Sélectionnez un enseignant</option>
+        <option *ngFor="let enseignant of enseignants" [value]="enseignant.id">{{ enseignant.prenom }} {{ enseignant.nom }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="justifie">Justifié</label>
+      <select class="form-control" id="justifie" formControlName="justifie">
+        <option value="Non">Non</option>
+        <option value="Oui">Oui</option>
+      </select>
+    </div>
+
+    <div class="form-group" *ngIf="absenceForm.value.justifie === 'Oui'">
+      <label for="motif">Motif (si justifié)</label>
+      <textarea class="form-control" id="motif" formControlName="motif_justifie"></textarea>
+      <div *ngIf="absenceForm.controls['motif_justifie'].invalid && absenceForm.controls['motif_justifie'].touched" class="text-danger">
+        Ce champ est requis si l'absence est justifiée.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm mt-3" >Modifier</button>
+    <button type="button" class="btn btn-secondary btn-sm mt-3" (click)="annulerModification()">Annuler</button>
+  </form>
+</div>

@@ -1,0 +1,52 @@
+/* sidebar.component.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #333;
+  color: white;
+  padding-top: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+/* 
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar ul li a:hover {
+  background-color: #575757;
+} */
+
+
+.nav-link {
+  color: white !important;
+  padding: 10px;
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+.nav-link:hover {
+  background-color: #f07c4f !important;
+  color: rgb(245, 221, 10) !important;
+}
+.nav-link.active {
+  background-color: #f07c4f !important;
+  color: rgb(245, 221, 10) !important;
+}
+
+.nav-link:focus {
+  background-color: rgb(126, 232, 240) !important;
+  color: rgb(5, 3, 41) !important;  
+}
