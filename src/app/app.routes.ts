@@ -39,6 +39,7 @@ import { AjoutEmargementComponent } from './emargements/ajout-emargement/ajout-e
 import { ModifEmargementComponent } from './emargements/modif-emargement/modif-emargement.component';
 import { BulletinsComponent } from './bulletins/bulletins.component';
 import { DetailsRechercheComponent } from './details-recherche/details-recherche.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
   
@@ -87,6 +88,8 @@ export const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent, canActivate: [authGuard], data: { roles: ['admin'] }},
   { path: 'enseignant-dashboard', component: EnseignantDashboardComponent, canActivate: [authGuard], data: { roles: ['enseignant'] }},
   { path: 'eleve-dashboard', component: EleveDashboardComponent, canActivate: [authGuard], data: { roles: ['eleve'] }},
+
+  { path: 'notifications', component: NotificationsComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
 
   { path: 'unauthorized', component: UnauthorizedComponent },
   // { path: '', redirectTo: 'login', pathMatch: 'full' }

@@ -2693,6 +2693,209 @@ try {
     }
 
     
+    // Pour Les Notifications 
+
+
+    // if ($method == 'GET') {
+    //     $role = $_GET['role'] ?? '';
+    //     $annee = $_GET['annee_scolaire_id'] ?? '';
+
+    //     $query = "
+    //         SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
+    //         FROM notifications n
+    //         JOIN users u ON u.id = n.user_id
+    //         WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
+    //         ORDER BY n.created_at DESC
+    //     ";
+
+    //     $result = $conn->query($query);
+    //     $data = [];
+
+    //     while ($row = $result->fetch_assoc()) {
+    //         $data[] = $row;
+    //     }
+
+    //     echo json_encode($data);
+    //     exit;
+    // }
+
+    
+    // if ($method == 'GET' && $_GET['action'] == 'getNotifications') {
+    //     $role = $_GET['role'] ?? 'tous';
+    //     $annee = $_GET['annee_scolaire_id'] ?? '';
+    
+    //     $query = "
+    //         SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
+    //         FROM notifications n
+    //         JOIN users u ON u.id = n.user_id
+    //         WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
+    //         ORDER BY n.created_at DESC
+    //     ";
+    
+    //     $result = $pdo->query($query);
+    //     $data = [];
+    
+    //     while ($row = $result->fetch_assoc()) {
+    //         $data[] = $row;
+    //     }
+    
+    //     echo json_encode($data);
+    //     exit;
+    // }
+    
+
+    // if ($method == 'POST') {
+    //     $input = json_decode(file_get_contents("php://input"), true);
+
+    //     $user_id = (int) $input['user_id'];
+    //     if (!isset($input['user_id']) || empty($input['user_id'])) {
+    //         echo json_encode(['success' => false, 'error' => 'Utilisateur non défini']);
+    //         exit;
+    //     }
+    //     $message = $pdo->real_escape_string($input['message']);
+    //     $cible = $pdo->real_escape_string($input['cible']);
+    //     $annee = $pdo->real_escape_string($input['annee_scolaire_id']);
+
+    //     $query = "INSERT INTO notifications (user_id, message, cible, annee_scolaire_id)
+    //             VALUES ($user_id, '$message', '$cible', '$annee')";
+
+    //     if ($conn->query($query)) {
+    //         echo json_encode(['success' => true]);
+    //     } else {
+    //         echo json_encode(['success' => false, 'error' => $pdo->error]);
+    //     }
+
+    //     exit;
+    // }
+/*
+
+    switch ($method) {
+        case 'GET':
+            if ($action == 'getNotifications') {
+                $role = $_GET['role'] ?? 'tous';
+                $annee = $_GET['annee_scolaire_id'] ?? '';
+            
+                $query = "
+                    SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
+                    FROM notifications n
+                    JOIN users u ON u.id = n.user_id
+                    WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
+                    ORDER BY n.created_at DESC
+                ";
+            
+                $result = $pdo->query($query); 
+                $data = [];
+            
+                while ($row = $result->fetch_assoc()) {
+                    $data[] = $row;
+                }
+            
+                echo json_encode($data);
+                exit;
+            }
+            break;
+    
+        case 'POST':
+            if ($action == 'ajouterNotification') {
+                $input = json_decode(file_get_contents("php://input"), true);
+    
+                $user_id = (int) $input['user_id'];
+                $message = $pdo->real_escape_string($input['message']); 
+                $cible = $pdo->real_escape_string($input['cible']); 
+                $annee = $pdo->real_escape_string($input['annee_scolaire_id']); 
+    
+                $query = "INSERT INTO notifications (user_id, message, cible, annee_scolaire_id)
+                        VALUES ($user_id, '$message', '$cible', '$annee')";
+    
+                if ($pdo->query($query)) {
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'error' => $pdo->error]); 
+                }
+    
+                exit;
+            }
+            break;
+    }
+
+*/    
+
+
+    switch ($method) {
+        case 'GET':
+            if ($action == 'getNotifications') {
+                $role = $_GET['role'] ?? 'tous';
+                $annee = $_GET['annee_scolaire_id'] ?? '';
+
+                $query = "
+                    SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
+                    FROM notifications n
+                    JOIN users u ON u.id = n.user_id
+                    WHERE (n.cible = ? OR n.cible = 'tous') AND n.annee_scolaire_id = ?
+                    ORDER BY n.created_at DESC
+                ";
+
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$role, strval($annee)]);
+                $data = [];
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($result as $row) {
+                    $data[] = $row;
+                }
+
+                // echo json_encode($data);
+                echo json_encode(['notifications' => $data]);
+                // var_dump($role, $annee, $result);
+
+                exit;
+            }
+            break;
+
+        case 'POST':
+            if ($action == 'ajouterNotification') {
+                $input = json_decode(file_get_contents("php://input"), true);
+
+                if (!isset($input['user_id'], $input['message'], $input['cible'], $input['annee_scolaire_id'])) {
+                    echo json_encode(['success' => false, 'error' => 'Champs manquants.']);
+                    exit;
+                }
+
+                $user_id = (int) $input['user_id'];
+                $message = $input['message'];
+                $cible = $input['cible'];
+                $annee = $input['annee_scolaire_id'];
+
+                $query = "INSERT INTO notifications (user_id, message, cible, annee_scolaire_id, lue)
+                        VALUES (?, ?, ?, ?, 0)";
+
+                $stmt = $pdo->prepare($query);
+                // $stmt->bindParam("isss", $user_id, $message, $cible, $annee);
+                // $stmt->execute([$user_id, $message, $cible, $annee]);
+
+                if ($stmt->execute([$user_id, $message, $cible, $annee])) {
+                    echo json_encode(['success' => true]);
+                } else {
+                    echo json_encode(['success' => false, 'error' => $stmt->error]);
+                }
+
+                exit;
+            }
+            break;
+
+        case 'POST':
+            if ($action === 'marquerCommeLue') {
+                $data = json_decode(file_get_contents("php://input"), true);
+                $id = $data['id'];
+
+                $stmt = $pdo->prepare("UPDATE notifications SET lue = 1 WHERE id = ?");
+                $stmt->execute([$id]);
+
+                echo json_encode(["success" => true]);
+                exit;
+            }
+            break;
+    }
+
 
 } catch (PDOException $e) {
     echo json_encode(["error" => "Erreur de connexion : " . $e->getMessage()]);

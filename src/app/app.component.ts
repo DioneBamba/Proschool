@@ -23,7 +23,9 @@ export class AppComponent {
   constructor(public authService: AuthService) {}
 
   // username: string = ''; // Remplace par un service d'authentification pour un utilisateur dynamique
-  username: { prenom: string, nom: string } | null = null;
+  // username: { prenom: string, nom: string } | null = null;
+  username: { id: number, prenom: string, nom: string, role?: string } | null = null;
+
   currentDate: Date = new Date();
 
   // logout() {

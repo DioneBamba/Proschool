@@ -40,6 +40,7 @@ import { NotesComponent } from './app/notes/notes.component';
 import { AjoutScolariteComponent } from './app/scolarites/ajout-scolarite/ajout-scolarite.component';
 import { ModifScolariteComponent } from './app/scolarites/modif-scolarite/modif-scolarite.component';
 import { ScolaritesComponent } from './app/scolarites/scolarites.component';
+import { NotificationsComponent } from './app/notifications/notifications.component';
 
 
 
@@ -88,6 +89,8 @@ const routes: Routes = [
   { path: 'eleve-dashboard', component: EleveDashboardComponent, canActivate: [authGuard], data: { roles: ['eleve'] }},
   { path: 'register', component: RegisterComponent },
   { path: 'details-recherche/:id/:type', component: DetailsRechercheComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant'] } },
+  
+  { path: 'notifications', component: NotificationsComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
 
   { path: '**', redirectTo: 'login' }, // Gérer les routes inexistantes
   { path: 'login', component: LoginComponent }, 

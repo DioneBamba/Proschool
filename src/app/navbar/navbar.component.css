@@ -89,3 +89,47 @@
   max-height: 300px; /* Ajoute une hauteur max pour éviter qu'il dépasse trop */
   overflow-y: auto; /* Permet le défilement si trop de résultats */
 }
+
+
+.dropdown-item span {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 280px;
+  display: block;
+}
+
+
+.notification-message {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Affiche seulement 2 lignes */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  white-space: normal;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  max-height: 3.2em; /* environ 2 lignes */
+  cursor: pointer;
+}
+
+
+
+/* Pour La Cloche de notification*/
+
+.notification-icon {
+  position: relative;
+}
+
+.notification-icon .badge {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+}

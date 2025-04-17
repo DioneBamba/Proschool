@@ -1,0 +1,92 @@
+
+<h3 class="my-4"><i class="bi bi-bell-fill text-primary"></i> Notifications de l'année {{ anneeService.getAnneeActuelle() }}</h3>
+
+<!-- Formulaire d'envoi -->
+<div class="card mb-4">
+  <div class="card-body">
+    <textarea [(ngModel)]="message" class="form-control mb-2" placeholder="Votre message..." rows="3"></textarea>
+    <div class="input-group">
+      <select class="form-select" [(ngModel)]="cible">
+        <option value="tous">Tous</option>
+        <option value="admin">Admins</option>
+        <option value="enseignant">Enseignants</option>
+        <option value="eleve">Élèves</option>
+      </select>
+      <button class="btn btn-primary" (click)="sendNotification()">
+        <i class="bi bi-send-fill"></i> Envoyer
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Liste des notifications -->
+<div *ngIf="notifications && notifications.length > 0; else aucuneNotif">
+  <ul class="list-group">
+    <li *ngFor="let notif of notifications" class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold">
+          <i class="bi bi-person-circle text-secondary"></i> {{ notif.nom }} {{ notif.prenom }} 
+          <small class="badge bg-secondary text-light ms-2">{{ notif.auteur_role }}</small>
+        </div>
+        <div class="text-muted small">
+          <i class="bi bi-clock"></i> {{ notif.created_at | date:'dd/MM/yyyy HH:mm' }}
+        </div>
+        <!-- <p class="mb-0 mt-2 text-truncate" style="max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;    cursor: pointer;" (click)="afficherMessageComplet(notif)">
+          <i class="bi bi-chat-left-text text-info"></i> {{ notif.message }}
+        </p> -->
+        <div class="notification-message" (click)="afficherMessageComplet(notif)">
+          <i class="bi bi-chat-left-text text-info me-1"></i>
+          {{ notif.message }}
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- Modal de message complet -->
+  <!-- <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="messageModalLabel">Message complet</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+          
+          
+          <pre style="white-space: pre-wrap;">{{ messageComplet }}</pre>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="messageModalLabel">
+            <i class="bi bi-chat-left-text me-2"></i> Message complet
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fermer"></button>
+        </div>
+        <div class="modal-body p-4" style="background-color: #f9f9f9;">
+          <div class="formatted-message" [innerHTML]="formatMessage(messageComplet)"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            <i class="bi bi-x-circle"></i> Fermer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</div>
+
+<!-- Message si aucune notification -->
+<ng-template #aucuneNotif>
+  <div class="alert alert-info text-center" role="alert">
+    <i class="bi bi-info-circle-fill"></i> Aucune notification enregistrée pour le moment.
+  </div>
+</ng-template>
+
