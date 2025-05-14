@@ -35,69 +35,7 @@ try {
     $action = isset($_GET['action']) ? $_GET['action'] : '';
     
     // Pour les élèves
- 
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getEleves') {
-    //             $query = "SELECT e.id, e.prenom, e.nom, e.date_naissance, e.classe_id, 
-    //                             c.nom_classe, e.groupe, e.nationalite, 
-    //                             e.adresse, e.telephone, e.sexe, 
-    //                             e.cout_scolarite, e.montant_paye
-    //                         FROM eleves e
-    //                         LEFT JOIN classes c ON e.classe_id = c.id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-    //         }
-    //         break;
-        
-    //     case 'POST':
-    //         $data = json_decode(file_get_contents("php://input"), true);
-            
-    //         if ($action == 'ajouterEleve') {
-    //             $query = "INSERT INTO eleves (prenom, nom, date_naissance, classe_id, groupe, nationalite, adresse, telephone, sexe, cout_scolarite, montant_paye) 
-    //                       VALUES (:prenom, :nom, :date_naissance, :classe_id, :groupe, :nationalite, :adresse, :telephone, :sexe, :cout_scolarite, :montant_paye)";
-    //             $stmt = $pdo->prepare($query);
-    //             if ($stmt->execute($data)) {
-    //                 echo json_encode(["message" => "Élève ajouté avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de l'ajout de l'élève"]);
-    //             }
-    //         }
-    //         break;
-            
-    //     case 'PUT':
-    //         $data = json_decode(file_get_contents("php://input"), true);
-    //         if ($action == 'modifierEleve' && isset($_GET['id'])) {
-    //             $query = "UPDATE eleves SET prenom=:prenom, nom=:nom, date_naissance=:date_naissance, classe_id=:classe_id, 
-    //                       groupe=:groupe, nationalite=:nationalite, adresse=:adresse, telephone=:telephone, sexe=:sexe, 
-    //                       cout_scolarite=:cout_scolarite, montant_paye=:montant_paye WHERE id=:id";
-    //             $stmt = $pdo->prepare($query);
-    //             $data['id'] = $_GET['id'];
-    //             if ($stmt->execute($data)) {
-    //                 echo json_encode(["message" => "Élève modifié avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la modification de l'élève"]);
-    //             }
-    //         }
-    //         break;
-        
-    //     case 'DELETE':
-    //         if ($action == 'supprimerEleve' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM eleves WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $_GET['id']);
-    //             if ($stmt->execute()) {
-    //                 echo json_encode(["message" => "Élève supprimé avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la suppression de l'élève"]);
-    //             }
-    //         }
-    //         break;
-        
-    //     default:
-    //         echo json_encode(["message" => "Méthode non autorisée"]);
-    // } 
+
 
     switch ($method) {
         case 'GET':
@@ -210,95 +148,8 @@ try {
 
 
     // Pour les années scolaires
- /*
 
-    $anneeScolaire = $_GET['anneeScolaire'] ?? '';
-    // $anneeScolaire = explode('-', $_GET['anneeScolaire'])[0];
-    $table = $_GET['table'] ?? '';
-    // error_log("🔍 Requête reçue : Table = $table, Année = $anneeScolaire"); // Vérification
-
-    // echo json_encode(["debug" => "Table = $table, Annee = $anneeScolaire"]); // Pour afficher dans le navigateur
-    // exit;
-
-    if (!in_array($table, ['eleves', 'enseignants', 'scolarites', 'classes', 'matieres', 'emargements', 'absences', 'emplois_temps', 'notes', 'users' ])) {
-        echo json_encode(["error" => "Table inconnue"]);
-        exit;
-    }
-
-    $sql = "SELECT * FROM $table WHERE annee_scolaire_id = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$anneeScolaire]);
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    echo json_encode($result);
-*/
-
-    // switch ($method) {
-    //     case 'GET':
-            
-    //         if ($action === 'getAnneesScolaires') {
-    //             $sql = "SELECT * FROM annees_scolaires ORDER BY id DESC";
-    //             $result = $conn->query($sql);
-
-    //             $annees = [];
-    //             while ($row = $result->fetch_assoc()) {
-    //                 $annees[] = $row;
-    //             }
-
-    //             echo json_encode($annees);
-    //         }
-    //         break;
-
-    //     case 'POST':
-    //         if ($action === 'ajouterAnneeScolaire') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             if (!isset($data['annee'])) {
-    //                 echo json_encode(["success" => false, "message" => "Données manquantes"]);
-    //             } else {
-    //                 $annee = $conn->real_escape_string($data['annee']);
-    //                 $sql = "INSERT INTO annees_scolaires (annee) VALUES ('$annee')";
-
-    //                 if ($conn->query($sql)) {
-    //                     echo json_encode(["success" => true, "message" => "Année scolaire ajoutée"]);
-    //                 } else {
-    //                     echo json_encode(["success" => false, "message" => "Erreur lors de l'ajout"]);
-    //                 }
-    //             }
-    //         }
-    //         break;
-
-    //     case 'POST':
-    //         if ($action === 'getDonneesParAnnee') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             if (!isset($data['anneeId'])) {
-    //                 echo json_encode(["success" => false, "message" => "ID de l'année scolaire manquant"]);
-    //             } else {
-    //                 $anneeId = intval($data['anneeId']);
-
-    //                 $tables = ['eleves', 'enseignants', 'scolarites', 'classes', 'matieres', 'emargements', 'absences', 'emplois_temps', 'notes', 'users'];
-    //                 $resultats = [];
-
-    //                 foreach ($tables as $table) {
-    //                     $sql = "SELECT * FROM $table WHERE annee_scolaire_id = $anneeId";
-    //                     $result = $conn->query($sql);
-
-    //                     $data = [];
-    //                     while ($row = $result->fetch_assoc()) {
-    //                         $data[] = $row;
-    //                     }
-
-    //                     $resultats[$table] = $data;
-    //                 }
-
-    //                 echo json_encode($resultats);
-    //             }
-    //         }
-    //         break;
-    // }
-
-    // Switch pour traiter les différentes requêtes
+    
     switch ($method) {
         case 'GET':
             if ($action === 'getAnneesScolaires') {
@@ -358,88 +209,7 @@ try {
 
     // Pour les Utilisateurs
 
-
-    // if ($method == 'POST') {
-    //     $data = json_decode(file_get_contents("php://input"), true);
-    //     if (!$data) {
-    //         echo json_encode(["message" => "Aucune donnée reçue", "input" => file_get_contents("php://input")]);
-    //         exit;
-    //     }
-    //     $action = $_GET['action'] ?? '';
     
-    //     if ($action == 'register') {
-    //         $nom = $data['nom'] ?? '';
-    //         $prenom = $data['prenom'] ?? '';
-    //         $email = $data['email'] ?? '';
-    //         $password = $data['password'] ?? '';
-    //         $role = $data['role'] ?? 'eleve';
-    
-    //         if (!filter_var($email, FILTER_VALIDATE_EMAIL) || empty($password)) {
-    //             echo json_encode(["message" => "Données invalides"]);
-    //             exit;
-    //         }
-    
-    //         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-    
-    //         $query = $pdo->prepare("INSERT INTO users (nom, prenom, email, password, role) VALUES (?, ?, ?, ?, ?)");
-    //         if ($query->execute([$nom, $prenom, $email, $hashedPassword, $role])) {
-    //             echo json_encode(["message" => "Utilisateur inscrit"]);
-    //         } else {
-    //             $errorInfo = $query->errorInfo();
-    //             echo json_encode(["message" => "Erreur lors de l'inscription"]);
-    //         }
-    //     } 
-        
-    //     elseif ($action == 'login') {
-    //         $email = $data['email'] ?? '';
-    //         $password = $data['password'] ?? '';
-    
-    //         $query = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    //         $query->execute([$email]);
-    //         $user = $query->fetch(PDO::FETCH_ASSOC);
-
-
-    //         if (!$user) {
-    //             echo json_encode(["message" => "Utilisateur non trouvé"]);
-    //             exit;
-    //         }
-            
-    //         //var_dump($user); // 🔍 Vérifie que l'utilisateur est bien récupéré
-            
-    //         //var_dump($password, $user['password']); // 🔍 Vérifie les valeurs
-    //         if ($user && password_verify($password, $user['password'])) {
-    //             $payload = [
-    //                 "id" => $user['id'],
-    //                 "email" => $user['email'],
-    //                 "role" => $user['role'],
-    //                 "exp" => time() + (60 * 60)
-    //             ];
-    //             $jwt = JWT::encode($payload, $secret_key, 'HS256');
-    //             //var_dump($jwt);
-    
-    //             echo json_encode(["message" => "Connexion réussie", "token" => $jwt, "user" => $user]);
-
-    //             // Ajout de logs pour le debug
-    //             error_log("Connexion réussie pour : " . $user['email']);
-    //         } else {
-    //             echo json_encode(["message" => "Identifiants incorrects"]);
-    //         }
-
-    //         error_log(json_encode([
-    //             "message" => "Connexion réussie",
-    //             "token" => $jwt,
-    //             "user" => $user
-    //         ]));        
-
-
-    //         // $testPassword = "123456";
-    //         // $hashed = password_hash($testPassword, PASSWORD_BCRYPT);
-
-    //         // echo "Test hash: " . $hashed . "\n";
-    //         // echo password_verify($testPassword, $hashed) ? "Mot de passe vérifié" : "Erreur de vérification";
-    //         }
-    // }
-
     switch ($method) {
         case 'GET':
             if ($action == 'getUsers') {
@@ -767,76 +537,7 @@ try {
 
 
     //Pour les classes
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getClasses') {
-    //             $query = "SELECT * FROM classes";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             $classes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //             echo json_encode($classes);
-    //         } elseif ($action == 'getClasseById' && isset($_GET['id'])) {
-    //             $query = "SELECT * FROM classes WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute(['id' => $_GET['id']]);
-    //             $classe = $stmt->fetch(PDO::FETCH_ASSOC);
-    //             echo json_encode($classe);
-    //         }
-    //         break;
     
-    //     case 'POST':
-    //         if ($action == 'ajouterClasse') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    //             if (!isset($data['nom_classe']) || empty($data['nom_classe'])) {
-    //                 echo json_encode(["error" => "Le nom de la classe est requis"]);
-    //                 exit;
-    //             }
-    //             $query = "INSERT INTO classes (nom_classe, description) VALUES (:nom_classe, :description)";
-    //             $stmt = $pdo->prepare($query);
-    //             if ($stmt->execute([
-    //                 'nom_classe' => $data['nom_classe'],
-    //                 'description' => $data['description'] ?? null
-    //             ])) {
-    //                 echo json_encode(["message" => "Classe ajoutée avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de l'ajout de la classe"]);
-    //             }
-    //         }
-    //         break;
-    
-    //     case 'PUT':
-    //         if ($action == 'modifierClasse' && isset($_GET['id'])) {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    //             $query = "UPDATE classes SET nom_classe = :nom_classe, description = :description WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             if ($stmt->execute([
-    //                 'nom_classe' => $data['nom_classe'],
-    //                 'description' => $data['description'],
-    //                 'id' => $_GET['id']
-    //             ])) {
-    //                 echo json_encode(["message" => "Classe modifiée avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la modification"]);
-    //             }
-    //         }
-    //         break;
-    
-    //     case 'DELETE':
-    //         if ($action == 'supprimerClasse' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM classes WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             if ($stmt->execute(['id' => $_GET['id']])) {
-    //                 echo json_encode(["message" => "Classe supprimée avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la suppression"]);
-    //             }
-    //         }
-    //         break;
-    
-    //     default:
-    //         echo json_encode(["error" => "Méthode non supportée"]);
-    // } 
 
     switch ($method) {
         case 'GET':
@@ -974,352 +675,8 @@ try {
 
 
 
-    // Pour les Enseignant 
-
-
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getEnseignants') {
-    //             $query = "SELECT * FROM enseignants";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-    //         } elseif ($action == 'getEnseignant' && isset($_GET['id'])) {
-    //             $query = "SELECT * FROM enseignants WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute(['id' => $_GET['id']]);
-    //             echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
-    //         }
-    //         break;
+    // Pour les Enseignant
     
-    //     case 'POST':
-    //         if ($action == 'ajouterEnseignant') {
-    //             $prenom = $_POST['prenom'];
-    //             $nom = $_POST['nom'];
-    //             $date_naissance = $_POST['date_naissance'];
-    //             $lieu_naissance = $_POST['lieu_naissance'];
-    //             $telephone = $_POST['telephone'];
-    //             $profession = $_POST['profession'];
-    //             $photo = '';
-    
-    //             if (!empty($_FILES['photo']['name'])) {
-    //                 $target_dir = "uploads/";
-    //                 if (!file_exists($target_dir)) {
-    //                     mkdir($target_dir, 0777, true); // Crée le dossier si inexistant
-    //                 }
-    //                 $photo = $target_dir . basename($_FILES["photo"]["name"]);
-    //                 // move_uploaded_file($_FILES["photo"]["tmp_name"], $photo);
-                    
-    //                 if (move_uploaded_file($_FILES["photo"]["tmp_name"], $photo)) {
-    //                     // echo json_encode(["message" => "Enseignant ajouté avec succès", "photo" => $photo]);
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de l'upload du fichier"]);
-    //                 }
-    //             }else {
-    //                 $photo = "Aucune photo reçue";
-    //             }
-    //             file_put_contents("debug.txt", print_r($_POST, true));
-    //             file_put_contents("debug.txt", "Photo: $photo\n", FILE_APPEND);
-    
-    //             $query = "INSERT INTO enseignants (prenom, nom, date_naissance, lieu_naissance, telephone, profession, photo) 
-    //                     VALUES (:prenom, :nom, :date_naissance, :lieu_naissance, :telephone, :profession, :photo)";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute([
-    //                 "prenom" => $prenom,
-    //                 "nom" => $nom,
-    //                 "date_naissance" => $date_naissance,
-    //                 "lieu_naissance" => $lieu_naissance,
-    //                 "telephone" => $telephone,
-    //                 "profession" => $profession,
-    //                 "photo" => $photo
-    //             ]);
-    
-    //             echo json_encode(["message" => "Enseignant ajouté avec succès", "photo" => $photo]);
-    //         }
-    //         break;
-    
-    //         case 'PUT':
-    //             if ($action == 'modifierEnseignant') {
-    //                 $data = json_decode(file_get_contents("php://input"), true);
-    //                 file_put_contents("debug_log.txt", print_r($data, true), FILE_APPEND);
-            
-    //                 if (!$data || !isset($data['id'])) {
-    //                     echo json_encode(["error" => "Données manquantes"]);
-    //                     exit;
-    //                 }
-            
-    //                 $id = $data['id'];
-    //                 $prenom = $data['prenom'];
-    //                 $nom = $data['nom'];
-    //                 $date_naissance = $data['date_naissance'];
-    //                 $lieu_naissance = $data['lieu_naissance'];
-    //                 $telephone = $data['telephone'];
-    //                 $profession = $data['profession'];
-            
-    //                 $photo = "";
-    //                 // Récupérer la photo si elle est envoyée
-    //                 if (!empty($_FILES['photo']['name'])) {
-    //                     $photo = 'uploads/' . basename($_FILES['photo']['name']);
-
-    //                     // Redimensionner l'image
-    //                     list($width, $height) = getimagesize($_FILES['photo']['tmp_name']);
-    //                     $newWidth = 200;  // Largeur souhaitée
-    //                     $newHeight = (int)($height * ($newWidth / $width));
-
-    //                     // Créer une image redimensionnée
-    //                     $image = imagecreatefrompng($_FILES['photo']['tmp_name']);
-    //                     $resizedImage = imagescale($image, $newWidth, $newHeight);
-
-    //                     // Sauvegarder l'image redimensionnée
-    //                     imagepng($resizedImage, $targetFilePath);
-    //                     imagedestroy($image);
-    //                     imagedestroy($resizedImage);
-
-    //                     move_uploaded_file($_FILES['photo']['tmp_name'], $photo);
-    //                 } else {
-    //                     // Si pas de photo, récupérer l'ancienne photo depuis la base de données
-    //                     $query = "SELECT photo FROM enseignants WHERE id=:id";
-    //                     $stmt = $pdo->prepare($query);
-    //                     $stmt->execute(["id" => $id]);
-    //                     if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    //                         $photo = $row['photo'];
-    //                     }
-    //                 }
-            
-    //                 // Mettre à jour les données
-    //                 $updateQuery = "UPDATE enseignants SET prenom=:prenom, nom=:nom, date_naissance=:date_naissance, lieu_naissance=:lieu_naissance, telephone=:telephone, profession=:profession, photo=:photo WHERE id=:id";
-    //                 $stmt = $pdo->prepare($updateQuery);
-    //                 $success = $stmt->execute([
-    //                     "prenom" => $prenom,
-    //                     "nom" => $nom,
-    //                     "date_naissance" => $date_naissance,
-    //                     "lieu_naissance" => $lieu_naissance,
-    //                     "telephone" => $telephone,
-    //                     "profession" => $profession,
-    //                     "photo" => $photo,
-    //                     "id" => $id
-    //                 ]);
-            
-    //                 if ($success) {
-    //                     echo json_encode(["message" => "Modification réussie", "photo" => $photo]);
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de la mise à jour"]);
-    //                 }
-
-    //                 error_log('Données reçues: ' . print_r($_POST, true));
-    //                 error_log('Fichier photo: ' . print_r($_FILES, true));  
-
-    //                 if ($updateSuccessful) {
-    //                     $response = ['status' => 'success', 'message' => 'Enseignant modifié avec succès'];
-    //                     echo json_encode($response);
-    //                 } else {
-    //                     $response = ['status' => 'error', 'message' => 'Erreur lors de la modification'];
-    //                     echo json_encode($response);
-    //                 }
-                    
-    //                 exit;
-    //             }
-    //             break;
-    
-        
-    //         case 'DELETE':
-    //             if ($action == 'supprimerEnseignant' && isset($_GET['id'])) {
-    //                 $query = "DELETE FROM enseignants WHERE id = :id";
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->execute(['id' => $_GET['id']]);
-    //                 echo json_encode(["message" => "Enseignant supprimé avec succès"]);
-    //             }
-    //             break;
-    
-    //         default:
-    //             echo json_encode(["error" => "Méthode non supportée"]);
-    // }
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getEnseignants') {
-    //             // Récupérer tous les enseignants pour une année scolaire donnée
-    //             $annee_scolaire_id = $_GET['annee_scolaire_id'] ?? null;
-    
-    //             if ($annee_scolaire_id) {
-    //                 $query = "SELECT * FROM enseignants WHERE annee_scolaire_id = :annee_scolaire_id";
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->execute(['annee_scolaire_id' => $annee_scolaire_id]);
-    //                 $enseignants = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //                 echo json_encode($enseignants);
-    //             } else {
-    //                 echo json_encode(['error' => 'L\'année scolaire est requise']);
-    //             }
-    //         } elseif ($action == 'getEnseignantById') {
-    //             // Récupérer un enseignant par ID
-    //             $id = $_GET['id'] ?? null;
-    //             if ($id) {
-    //                 $query = "SELECT * FROM enseignants WHERE id = ?";
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->execute([$id]);
-    //                 $enseignant = $stmt->fetch(PDO::FETCH_ASSOC);
-    //                 echo json_encode($enseignant);
-    //             } else {
-    //                 echo json_encode(['error' => 'ID non spécifié']);
-    //             }
-    //         }
-    //         break;
-    
-    //     case 'POST':
-    //         if ($action == 'ajouterEnseignant') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    //             if (!$data) {
-    //                 $data = $_POST; // Essaye avec $_POST si json_decode échoue
-    //             }
-    //             // Ajouter un nouvel enseignant
-    //             $prenom = $_POST['prenom'] ?? '';
-    //             $nom = $_POST['nom'] ?? '';
-    //             $date_naissance = $_POST['date_naissance'] ?? null;
-    //             $lieu_naissance = $_POST['lieu_naissance'] ?? '';
-    //             $telephone = $_POST['telephone'] ?? '';
-    //             $profession = $_POST['profession'] ?? '';
-    //             $annee_scolaire_id = $_POST['annee_scolaire_id'] ?? null;
-    //             $photo = '';
-    
-    //             if (!$annee_scolaire_id) {
-    //                 echo json_encode(['error' => 'L\'année scolaire est obligatoire']);
-    //                 exit;
-    //             }
-    
-    //             // Gestion de l'upload de la photo
-    //             /*if (!empty($_FILES['photo']['name'])) {
-    //                 $target_dir = "uploads/";
-    //                 if (!file_exists($target_dir)) {
-    //                     mkdir($target_dir, 0777, true);
-    //                 }
-    //                 $photo = $target_dir . basename($_FILES["photo"]["name"]);
-    //                 move_uploaded_file($_FILES["photo"]["tmp_name"], $photo);
-    //             }*/
-
-    //             if (!empty($_FILES['photo']['name'])) {
-    //                 $target_dir = "uploads/";
-    //                 if (!file_exists($target_dir)) {
-    //                     mkdir($target_dir, 0777, true); // Crée le dossier si inexistant
-    //                 }
-    //                 $photo = $target_dir . basename($_FILES["photo"]["name"]);
-    //                 // move_uploaded_file($_FILES["photo"]["tmp_name"], $photo);
-                    
-    //                 if (move_uploaded_file($_FILES["photo"]["tmp_name"], $photo)) {
-    //                     // echo json_encode(["message" => "Enseignant ajouté avec succès", "photo" => $photo]);
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de l'upload du fichier"]);
-    //                 }
-    //             }else {
-    //                 $photo = "Aucune photo reçue";
-    //             }
-
-    //             // Journalisation des données reçues
-    //             file_put_contents("debug.log", "GET DATA: " . print_r($_GET, true) . PHP_EOL, FILE_APPEND);
-    //             file_put_contents("debug.log", "POST DATA: " . print_r($_POST, true) . PHP_EOL, FILE_APPEND);
-    //             file_put_contents("debug.log", "FILES DATA: " . print_r($_FILES, true) . PHP_EOL, FILE_APPEND);
-    
-    //             $query = "INSERT INTO enseignants (prenom, nom, date_naissance, lieu_naissance, telephone, profession, photo, annee_scolaire_id) 
-    //                       VALUES (:prenom, :nom, :date_naissance, :lieu_naissance, :telephone, :profession, :photo, :annee_scolaire_id)";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute([
-    //                 "prenom" => $prenom,
-    //                 "nom" => $nom,
-    //                 "date_naissance" => $date_naissance,
-    //                 "lieu_naissance" => $lieu_naissance,
-    //                 "telephone" => $telephone,
-    //                 "profession" => $profession,
-    //                 "photo" => $photo,
-    //                 "annee_scolaire_id" => $annee_scolaire_id
-    //             ]);
-    //             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    //             echo json_encode(["message" => "Enseignant ajouté avec succès", "photo" => $photo]);
-    //         }
-    //         break;
-    
-    //     case 'PUT':
-    //         if ($action == 'modifierEnseignant') {
-    //             // Modifier un enseignant
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    
-    //             if (!$data || !isset($data['id'])) {
-    //                 echo json_encode(["error" => "ID non spécifié"]);
-    //                 exit;
-    //             }
-    
-    //             $id = $data['id'];
-    //             $prenom = $data['prenom'] ?? '';
-    //             $nom = $data['nom'] ?? '';
-    //             $date_naissance = $data['date_naissance'] ?? null;
-    //             $lieu_naissance = $data['lieu_naissance'] ?? '';
-    //             $telephone = $data['telephone'] ?? '';
-    //             $profession = $data['profession'] ?? '';
-    //             $annee_scolaire_id = $data['annee_scolaire_id'] ?? null;
-    //             $photo = '';
-    
-    //             if (!$annee_scolaire_id) {
-    //                 echo json_encode(['error' => 'L\'année scolaire est obligatoire']);
-    //                 exit;
-    //             }
-    
-    //             // Gestion de l'upload de la photo
-    //             if (!empty($_FILES['photo']['name'])) {
-    //                 $target_dir = "uploads/";
-    //                 if (!file_exists($target_dir)) {
-    //                     mkdir($target_dir, 0777, true);
-    //                 }
-    //                 $photo = $target_dir . basename($_FILES["photo"]["name"]);
-    //                 move_uploaded_file($_FILES["photo"]["tmp_name"], $photo);
-    //             } else {
-    //                 $query = "SELECT photo FROM enseignants WHERE id = :id";
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->execute(['id' => $id]);
-    //                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //                 $photo = $result['photo'] ?? '';
-    //             }
-    
-    //             $query = "UPDATE enseignants SET prenom = :prenom, nom = :nom, date_naissance = :date_naissance, 
-    //                       lieu_naissance = :lieu_naissance, telephone = :telephone, profession = :profession, 
-    //                       photo = :photo, annee_scolaire_id = :annee_scolaire_id WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute([
-    //                 "prenom" => $prenom,
-    //                 "nom" => $nom,
-    //                 "date_naissance" => $date_naissance,
-    //                 "lieu_naissance" => $lieu_naissance,
-    //                 "telephone" => $telephone,
-    //                 "profession" => $profession,
-    //                 "photo" => $photo,
-    //                 "annee_scolaire_id" => $annee_scolaire_id,
-    //                 "id" => $id
-    //             ]);
-    
-    //             echo json_encode(["message" => "Enseignant modifié avec succès", "photo" => $photo]);
-    //         }
-    //         break;
-    
-    //     case 'DELETE':
-    //         if ($action == 'supprimerEnseignant') {
-    //             // Supprimer un enseignant
-    //             $id = $_GET['id'] ?? null;
-    //             if ($id) {
-    //                 $query = "DELETE FROM enseignants WHERE id = ?";
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->execute([$id]);
-    //                 echo json_encode(['message' => "Enseignant supprimé avec succès"]);
-    //             } else {
-    //                 echo json_encode(['error' => 'ID non spécifié']);
-    //             }
-    //         }
-    //         break;
-    
-    //     default:
-    //         echo json_encode(['error' => 'Méthode non supportée']);
-    //         break;
-    // }
-
-
     switch ($method) {
         case 'GET':
             if ($action == 'getEnseignants') {
@@ -1409,143 +766,7 @@ try {
 
 
     // Pour les emplois du temps
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getEmplois') {
-
-    //         $id = isset($_GET['classe_id']) ? intval($_GET['classe_id']) : 0;
-    //             if ($id > 0) {
-    //                 $query = "SELECT 
-    //                             heure,
-    //                             MAX(CASE WHEN jour = 'Lundi' THEN matiere END) AS Lundi,
-    //                             MAX(CASE WHEN jour = 'Mardi' THEN matiere END) AS Mardi,
-    //                             MAX(CASE WHEN jour = 'Mercredi' THEN matiere END) AS Mercredi,
-    //                             MAX(CASE WHEN jour = 'Jeudi' THEN matiere END) AS Jeudi,
-    //                             MAX(CASE WHEN jour = 'Vendredi' THEN matiere END) AS Vendredi,
-    //                             MAX(CASE WHEN jour = 'Samedi' THEN matiere END) AS Samedi
-    //                         FROM (
-    //                             SELECT
-    //                                 e.heure,
-    //                                 e.jour,
-    //                                 m.nom AS matiere
-    //                             FROM emplois_temps e
-    //                             JOIN matieres m ON e.matiere_id = m.id
-    //                             WHERE e.classe_id = :classe_id
-    //                         ) AS subquery
-    //                         GROUP BY heure
-    //                         ORDER BY heure";
-                    
-
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->bindParam(':classe_id', $id, PDO::PARAM_INT);
-    //                 $stmt->execute();
-
-    //                 // var_dump($stmt->fetchAll(PDO::FETCH_ASSOC)); exit;
-
-    //                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //                 echo json_encode($result);
-    //             } else {
-    //                 echo json_encode(["error" => "Classe non valide"]);
-    //             }
-    //         }
-    //         break;
     
-    //     case 'POST':
-    //         $data = json_decode(file_get_contents("php://input"), true);
-    //         // Vérifier si les données sont bien un tableau
-    //         if (!is_array($data) || empty($data)) {
-    //             echo json_encode(["error" => "Données incomplètes"]);
-    //             exit;
-    //         }
-    
-    //         if ($action == 'ajouterEmplois') {
-    //             // $query = "INSERT INTO emplois_temps (jour, heure, matiere_id, classe_id) 
-    //             //           VALUES (:jour, :heure, :matiere_id, :classe_id)";
-    //             // $stmt = $pdo->prepare($query);
-    //             // if ($stmt->execute($data)) {
-    //             //     echo json_encode(["message" => "Emploi du temps ajouté avec succès"]);
-    //             // } else {
-    //             //     echo json_encode(["error" => "Erreur lors de l'ajout"]);
-    //             // }
-
-    //             $query = "INSERT INTO emplois_temps (classe_id, jour, heure, matiere_id) VALUES (?, ?, ?, ?)";
-    //             $stmt = $pdo->prepare($query);
-                
-    //             $errors = [];
-    //             foreach ($data as $emploi) {
-    //                 if (!isset($emploi['classe_id'], $emploi['jour'], $emploi['heure'], $emploi['matiere_id'])) {
-    //                     $errors[] = "Données incomplètes pour un emploi du temps.";
-    //                     continue;
-    //                 }
-
-    //                 // Convertir l'heure au bon format (si nécessaire)
-    //                 $heure = explode(' - ', $emploi['heure'])[0]; // Prend seulement l'heure de début
-
-    //                 $success = $stmt->execute([$emploi['classe_id'], $emploi['jour'], $heure, $emploi['matiere_id']]);
-    //                 if (!$success) {
-    //                     $errors[] = "Erreur lors de l'insertion pour " . json_encode($emploi);
-    //                 }
-    //             }
-    //             if (!empty($errors)) {
-    //                 echo json_encode(["error" => $errors]);
-    //             } else {
-    //                 echo json_encode(["success" => true]);
-    //             }
-    //         }
-    //         break;
-    
-    //     case 'PUT':
-    //         if ($action == 'modifierEmplois' && isset($_GET['id'])) {
-    //             /*$id = $_GET['id'];*/
-    //             $id = intval($_GET['id']);
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             if (isset($data['jour'], $data['heure'], $data['matiere_id'], $data['classe_id'])) {
-    //                 $query = "UPDATE emplois_temps SET 
-    //                             jour = :jour, 
-    //                             heure = :heure, 
-    //                             matiere_id = :matiere_id, 
-    //                             classe_id = :classe_id 
-    //                         WHERE id = :id";
-    //                 $stmt = $pdo->prepare($query);
-    //                 file_put_contents("debug_log.txt", "Requête exécutée : $query\nID : $id\n", FILE_APPEND);
-    //                 $stmt->bindParam(':jour', $data['jour']);
-    //                 $stmt->bindParam(':heure', $data['heure']);
-    //                 $stmt->bindParam(':matiere_id', $data['matiere_id']);
-    //                 // $stmt->bindParam(':enseignant_id', $data['enseignant_id']);
-    //                 $stmt->bindParam(':classe_id', $data['classe_id']);
-    //                 $stmt->bindParam(':id', $id);
-
-    //                 /*file_put_contents("debug_log.txt", "Requête SQL exécutée : $query\n", FILE_APPEND);*/
-
-    //                 if ($stmt->execute()) {
-    //                     echo json_encode(["message" => "Emploi du temps modifié avec succès"]);
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de la modification"]);
-    //                 }
-    //             } else {
-    //                 echo json_encode(["error" => "Données incomplètes"]);
-    //             }
-    //         }
-    //         break;
-    
-    //     case 'DELETE':
-    //         if ($action == 'supprimerEmplois' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM emplois_temps WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $_GET['id']);
-    //             if ($stmt->execute()) {
-    //                 echo json_encode(["message" => "Emploi du temps supprimé avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la suppression"]);
-    //             }
-    //         }
-    //         break;
-    
-    //     default:
-    //         echo json_encode(["message" => "Méthode non autorisée"]);
-    // }
 
     switch ($method) {
         case 'GET':
@@ -1714,160 +935,7 @@ try {
 
 
     // Pour les absences
-
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getAbsences') {
-    //             $query = "SELECT 
-    //                         a.id, 
-    //                         e.prenom AS eleve_prenom, e.nom AS eleve_nom, 
-    //                         m.nom AS matiere_nom, 
-    //                         c.nom_classe AS classe_nom, 
-    //                         a.jour, 
-    //                         a.heure_debut, 
-    //                         a.heure_fin, 
-    //                         a.date_absence, 
-    //                         CONCAT(ens.prenom, ' ', ens.nom) AS enseignant_nom,
-    //                         a.justifie, 
-    //                         a.motif_justifie
-    //                     FROM absences a
-    //                     LEFT JOIN eleves e ON a.eleve_id = e.id
-    //                     LEFT JOIN matieres m ON a.matiere_id = m.id
-    //                     LEFT JOIN classes c ON a.classe_id = c.id
-    //                     LEFT JOIN enseignants ens ON a.enseignant_id = ens.id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-    //         }
-
-    //         elseif ($action == 'getAbsenceById' && isset($_GET['id'])) {
-    //             $id = $_GET['id'];
-    //             $query = "SELECT 
-    //                          a.id, 
-    //                         a.eleve_id,   -- 🔹 Ajout de eleve_id
-    //                         a.matiere_id, -- 🔹 Ajout de matiere_id
-    //                         a.classe_id,  -- 🔹 Ajout de classe_id
-    //                         a.enseignant_id, -- 🔹 Ajout de enseignant_id
-    //                         e.prenom AS eleve_prenom, e.nom AS eleve_nom, 
-    //                         m.nom AS matiere_nom, 
-    //                         c.nom_classe AS classe_nom, 
-    //                         a.jour, 
-    //                         a.heure_debut, 
-    //                         a.heure_fin, 
-    //                         a.date_absence, 
-    //                         CONCAT(ens.prenom, ' ', ens.nom) AS enseignant_nom,
-    //                         a.justifie, 
-    //                         a.motif_justifie
-    //                     FROM absences a
-    //                     LEFT JOIN eleves e ON a.eleve_id = e.id
-    //                     LEFT JOIN matieres m ON a.matiere_id = m.id
-    //                     LEFT JOIN classes c ON a.classe_id = c.id
-    //                     LEFT JOIN enseignants ens ON a.enseignant_id = ens.id
-    //                     WHERE a.id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    //             $stmt->execute();
-                
-    //             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //             if ($result) {
-    //                 echo json_encode($result);
-    //             } else {
-    //                 echo json_encode(["error" => "Aucune absence trouvée pour l'ID : $id"]);
-    //             }
-    //         }
-
-
-    //         break;
-
-    //         case 'POST':
-    //             if ($action == 'ajouterAbsence') {
-    //                 $data = json_decode(file_get_contents("php://input"), true);
-                    
-    //                 $query = "INSERT INTO absences (eleve_id, matiere_id, classe_id, jour, heure_debut, heure_fin, date_absence, enseignant_id, justifie, motif_justifie) 
-    //                           VALUES (:eleve_id, :matiere_id, :classe_id, :jour, :heure_debut, :heure_fin, :date_absence, :enseignant_id, :justifie, :motif_justifie)";
-                    
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->bindParam(':eleve_id', $data['eleve_id']);
-    //                 $stmt->bindParam(':matiere_id', $data['matiere_id']);
-    //                 $stmt->bindParam(':classe_id', $data['classe_id']);
-    //                 $stmt->bindParam(':jour', $data['jour']);
-    //                 $stmt->bindParam(':heure_debut', $data['heure_debut']);
-    //                 $stmt->bindParam(':heure_fin', $data['heure_fin']);
-    //                 $stmt->bindParam(':date_absence', $data['date_absence']);
-    //                 $stmt->bindParam(':enseignant_id', $data['enseignant_id']);
-    //                 $stmt->bindParam(':justifie', $data['justifie']);
-    //                 $stmt->bindParam(':motif_justifie', $data['motif_justifie']);
-            
-    //                 if ($stmt->execute()) {
-    //                     echo json_encode(["message" => "Absence ajoutée avec succès"]);
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de l'ajout"]);
-    //                 }
-    //             }
-    //             break;
-
-    //     case 'PUT':
-    //         if ($action == 'modifierAbsence' && isset($_GET['id'])) {
-    //             $id = intval($_GET['id']);
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             if (isset($data['eleve_id'], $data['matiere_id'], $data['classe_id'], $data['jour'], $data['heure_debut'], $data['heure_fin'], $data['date_absence'], $data['enseignant_id'], $data['justifie'], $data['motif_justifie'])) {
-    //                 $query = "UPDATE absences SET 
-    //                             eleve_id = :eleve_id, 
-    //                             matiere_id = :matiere_id, 
-    //                             classe_id = :classe_id, 
-    //                             jour = :jour, 
-    //                             heure_debut = :heure_debut, 
-    //                             heure_fin = :heure_fin, 
-    //                             date_absence = :date_absence, 
-    //                             enseignant_id = :enseignant_id, 
-    //                             justifie = :justifie, 
-    //                             motif_justifie = :motif_justifie 
-    //                         WHERE id = :id";
-    //                 file_put_contents("debug.log", print_r($data, true)); 
-    //                 $stmt = $pdo->prepare($query);
-    //                 $stmt->bindParam(':eleve_id', $data['eleve_id']);
-    //                 $stmt->bindParam(':matiere_id', $data['matiere_id']);
-    //                 $stmt->bindParam(':classe_id', $data['classe_id']);
-    //                 $stmt->bindParam(':jour', $data['jour']);
-    //                 $stmt->bindParam(':heure_debut', $data['heure_debut']);
-    //                 $stmt->bindParam(':heure_fin', $data['heure_fin']);
-    //                 $stmt->bindParam(':date_absence', $data['date_absence']);
-    //                 $stmt->bindParam(':enseignant_id', $data['enseignant_id']);
-    //                 $stmt->bindParam(':justifie', $data['justifie']);
-    //                 $stmt->bindParam(':motif_justifie', $data['motif_justifie']);
-    //                 $stmt->bindParam(':id', $id);
-
-    //                 if ($stmt->execute()) {
-    //                     echo json_encode(["message" => "Absence modifiée avec succès"]);
-    //                     exit; // ⚠️ Ajout d'un exit pour éviter d'envoyer une réponse vide
-    //                 } else {
-    //                     echo json_encode(["error" => "Erreur lors de la modification"]);
-    //                 }
-    //             } else {
-    //                 echo json_encode(["error" => "Données incomplètes"]);
-    //             }
-    //         }
-    //         break;
-
-    //     case 'DELETE':
-    //         if ($action == 'supprimerAbsence' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM absences WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $_GET['id']);
-    //             if ($stmt->execute()) {
-    //                 echo json_encode(["message" => "Absence supprimée avec succès"]);
-    //             } else {
-    //                 echo json_encode(["error" => "Erreur lors de la suppression"]);
-    //             }
-    //         }
-    //         break;
-
-    //     default:
-    //         echo json_encode(["message" => "Méthode non autorisée"]);
-    // }
-
+    
     switch ($method) {
         case 'GET':
             if ($action === 'getAbsences') {
@@ -1977,113 +1045,7 @@ try {
 
 
     // API pour les notes
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getNotes') {
-    //             $query = "SELECT 
-    //                         n.id, 
-    //                         e.prenom AS eleve_prenom, e.nom AS eleve_nom, 
-    //                         m.nom AS matiere_nom, 
-    //                         c.nom_classe AS classe_nom, 
-    //                         n.semestre, n.devoir1, n.devoir2, n.composition, 
-    //                         n.coefficient, 
-    //                         CONCAT(ens.prenom, ' ', ens.nom) AS enseignant_nom
-    //                     FROM notes n
-    //                     LEFT JOIN eleves e ON n.eleve_id = e.id
-    //                     LEFT JOIN matieres m ON n.matiere_id = m.id
-    //                     LEFT JOIN classes c ON n.classe_id = c.id
-    //                     LEFT JOIN enseignants ens ON n.enseignant_id = ens.id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    //             header('Content-Type: application/json');
-    //             echo json_encode($result ?: []);
-
-    //             // Log for debugging
-    //             if (!$result) {
-    //                 error_log("Aucune donnée trouvée.");
-    //             }
-    //         }
-    //         elseif ($action == 'getNoteById' && isset($_GET['id'])) {
-    //             $id = $_GET['id'];
-    //             $query = "SELECT 
-    //                         n.id, 
-    //                         n.eleve_id, 
-    //                         n.matiere_id, 
-    //                         n.classe_id, 
-    //                         n.enseignant_id, 
-    //                         e.prenom AS eleve_prenom, e.nom AS eleve_nom, 
-    //                         m.nom AS matiere_nom, 
-    //                         c.nom_classe AS classe_nom, 
-    //                         n.semestre, n.devoir1, n.devoir2, n.composition, 
-    //                         n.coefficient, 
-    //                         CONCAT(ens.prenom, ' ', ens.nom) AS enseignant_nom
-    //                     FROM notes n
-    //                     LEFT JOIN eleves e ON n.eleve_id = e.id
-    //                     LEFT JOIN matieres m ON n.matiere_id = m.id
-    //                     LEFT JOIN classes c ON n.classe_id = c.id
-    //                     LEFT JOIN enseignants ens ON n.enseignant_id = ens.id
-    //                     WHERE n.id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    //             $stmt->execute();
-                
-    //             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //             echo json_encode($result ?: ["error" => "Aucune note trouvée pour l'ID : $id"]);
-    //         }
-    //         break;
-        
-    //     case 'POST':
-    //         if ($action == 'ajouterNote') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    //             $query = "INSERT INTO notes (eleve_id, matiere_id, classe_id, enseignant_id, semestre, devoir1, devoir2, 
-    //                                 composition, coefficient) 
-    //                     VALUES (:eleve_id, :matiere_id, :classe_id, :enseignant_id, :semestre, :devoir1, :devoir2, :composition,   :coefficient)";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute($data);
-    //             echo json_encode(["message" => "Note ajoutée avec succès"]);
-    //         }
-    //         break;
-        
-    //     case 'PUT':
-    //         if ($action == 'modifierNote' && isset($_GET['id'])) {
-    //             $id = intval($_GET['id']);
-    //             $data = json_decode(file_get_contents("php://input"), true);
-    //             $query = "UPDATE notes SET 
-    //                         eleve_id = :eleve_id, 
-    //                         matiere_id = :matiere_id, 
-    //                         classe_id = :classe_id, 
-    //                         enseignant_id = :enseignant_id, 
-    //                         semestre = :semestre,
-    //                         devoir1 = :devoir1, 
-    //                         devoir2 = :devoir2, 
-    //                         composition = :composition, 
-    //                         coefficient = :coefficient
-    //                     WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $data['id'] = $id;
-    //             $stmt->execute($data);
-    //             echo json_encode(["message" => "Note modifiée avec succès"]);
-    //         }
-    //         break;
-        
-    //     case 'DELETE':
-    //         if ($action == 'supprimerNote' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM notes WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $_GET['id']);
-    //             $stmt->execute();
-    //             echo json_encode(["message" => "Note supprimée avec succès"]);
-    //         }
-    //         break;
-        
-    //     default:
-    //         echo json_encode(["message" => "Méthode non autorisée"]);
-    // }
-
-
+    
     switch ($method) {
         case 'GET':
             if ($action === 'getNotes') {
@@ -2199,120 +1161,7 @@ try {
 
 
     //Api pour les scolarités
-
-    // switch ($method) {
-    //     case 'GET':
-    //         if ($action == 'getScolarites') {
-    //             $query = "SELECT 
-    //                         s.id, 
-    //                         CONCAT(e.prenom, ' ', e.nom) AS eleve_nom, 
-    //                         e.date_naissance, e.sexe, 
-    //                         c.nom_classe AS classe_nom, 
-    //                         s.cout_scolarite, s.montant_paye, 
-    //                         s.reste_a_payer, s.etat_scolarite, s.date_paiement
-    //                     FROM scolarites s
-    //                     LEFT JOIN eleves e ON s.eleve_id = e.id
-    //                     LEFT JOIN classes c ON e.classe_id = c.id";
-                        
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute();
-    //             echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC) ?: []);
-    //         } elseif ($action == 'getScolariteById' && isset($_GET['id'])) {
-    //             $id = intval($_GET['id']);
-    //             $query = "SELECT * FROM scolarites WHERE id = :id LIMIT 0, 25";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute(['id' => $id]);
-    //             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    //             echo json_encode($result ?: null);  // Retourne null si aucune scolarité trouvée
-    //         }
-    //         break;
-
-    //     case 'POST':
-    //         if ($action == 'ajouterScolarite') {
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             // Calcul automatique
-    //             $reste_a_payer = $data['cout_scolarite'] - $data['montant_paye'];
-    //             if ($reste_a_payer == 0) {
-    //                 $etat_scolarite = 'payé';
-    //             } elseif ($data['montant_paye'] > 0) {
-    //                 $etat_scolarite = 'partiellement payé';
-    //             } else {
-    //                 $etat_scolarite = 'non payé';
-    //             }
-    //             $date_paiement = ($data['montant_paye'] > 0) ? date('Y-m-d') : null;
-                
-
-    //             $query = "INSERT INTO scolarites (eleve_id, cout_scolarite, montant_paye, reste_a_payer, etat_scolarite, date_paiement)
-    //                     VALUES (:eleve_id, :cout_scolarite, :montant_paye, :reste_a_payer, :etat_scolarite, :date_paiement)";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute([
-    //                 'eleve_id' => $data['eleve_id'],
-    //                 'cout_scolarite' => $data['cout_scolarite'],
-    //                 'montant_paye' => $data['montant_paye'],
-    //                 'reste_a_payer' => $reste_a_payer,
-    //                 'etat_scolarite' => $etat_scolarite,
-    //                 'date_paiement' => $date_paiement
-    //             ]);
-
-    //             echo json_encode(["message" => "Scolarité ajoutée avec succès"]);
-    //         }
-    //         break;
-
-    //     case 'PUT':
-    //         if ($action == 'modifierScolarite' && isset($_GET['id'])) {
-    //             $id = intval($_GET['id']);
-    //             $data = json_decode(file_get_contents("php://input"), true);
-
-    //             // Recalcul des valeurs
-    //             $reste_a_payer = $data['cout_scolarite'] - $data['montant_paye'];
-    //             if ($reste_a_payer == 0) {
-    //                 $etat_scolarite = 'payé';
-    //             } elseif ($data['montant_paye'] > 0) {
-    //                 $etat_scolarite = 'partiellement payé';
-    //             } else {
-    //                 $etat_scolarite = 'non payé';
-    //             }
-    //             $date_paiement = ($data['montant_paye'] > 0) ? date('Y-m-d') : null;
-
-    //             $query = "UPDATE scolarites SET 
-    //                         eleve_id = :eleve_id, 
-    //                         cout_scolarite = :cout_scolarite, 
-    //                         montant_paye = :montant_paye, 
-    //                         reste_a_payer = :reste_a_payer, 
-    //                         etat_scolarite = :etat_scolarite, 
-    //                         date_paiement = :date_paiement
-    //                     WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->execute([
-    //                 'eleve_id' => $data['eleve_id'],
-    //                 'cout_scolarite' => $data['cout_scolarite'],
-    //                 'montant_paye' => $data['montant_paye'],
-    //                 'reste_a_payer' => $reste_a_payer,
-    //                 'etat_scolarite' => $etat_scolarite,
-    //                 'date_paiement' => $date_paiement,
-    //                 'id' => $id
-    //             ]);
-
-    //             echo json_encode(["message" => "Scolarité modifiée avec succès"]);
-    //         }
-    //         break;
-
-    //     case 'DELETE':
-    //         if ($action == 'supprimerScolarite' && isset($_GET['id'])) {
-    //             $query = "DELETE FROM scolarites WHERE id = :id";
-    //             $stmt = $pdo->prepare($query);
-    //             $stmt->bindParam(':id', $_GET['id']);
-    //             $stmt->execute();
-    //             echo json_encode(["message" => "Scolarité supprimée avec succès"]);
-    //         }
-    //         break;
-
-    //     default:
-    //         echo json_encode(["message" => "Méthode non autorisée"]);
-    // }
-
-
+    
     switch ($method) {
         case 'GET':
             if ($action === 'getScolarites') {
@@ -2539,78 +1388,6 @@ try {
 
     //Pour les ___ recherches ____
     
-    // if ($_GET['action'] == 'recherche' && isset($_GET['q'])) {
-    //     $query = $_GET['q'];
-    
-    //     $stmt = $pdo->prepare("
-    //         SELECT id, nom, prenom, date_naissance, classe_id, groupe, nationalite, adresse, telephone, sexe, 'eleve' AS type 
-    //         FROM eleves 
-    //         WHERE nom LIKE ? OR prenom LIKE ?
-    //         UNION
-    //         SELECT id, nom_classe AS nom, '' AS prenom, '' AS date_naissance, '' AS classe_id, '' AS groupe, '' AS nationalite, '' AS adresse, '' AS telephone, '' AS sexe, 'classe' AS type 
-    //         FROM classes 
-    //         WHERE nom_classe LIKE ?
-    //         UNION
-    //         SELECT id, nom, prenom, date_naissance, '' AS classe_id, '' AS groupe, '' AS nationalite, '' AS adresse, telephone, '' AS sexe, 'enseignant' AS type 
-    //         FROM enseignants 
-    //         WHERE nom LIKE ? OR prenom LIKE ?
-    //         UNION
-    //         SELECT id, etat_scolarite AS nom, '' AS prenom, '' AS date_naissance, '' AS classe_id, '' AS groupe, '' AS nationalite, '' AS adresse, '' AS telephone, '' AS sexe, 'scolarite' AS type 
-    //         FROM scolarites 
-    //         WHERE etat_scolarite LIKE ?");
-    
-    //     $stmt->execute(["%$query%", "%$query%", "%$query%", "%$query%", "%$query%", "%$query%"]);
-    //     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
-    // }
-
-    // if ($_GET['action'] == 'getDetails' && isset($_GET['id']) && isset($_GET['type'])) {
-    // $id = $_GET['id'];
-    // $type = $_GET['type'];
-
-    //     switch ($type) {
-    //         case 'eleve':
-    //             $stmt = $pdo->prepare("
-    //                 SELECT e.id, e.nom, e.prenom, e.date_naissance, e.classe_id, e.groupe, e.nationalite, e.adresse, e.telephone, e.sexe,
-    //                     s.cout_scolarite, s.montant_paye, s.etat_scolarite, 
-    //                     (s.cout_scolarite - s.montant_paye) AS reste_a_payer
-    //                 FROM eleves e
-    //                 LEFT JOIN scolarites s ON e.id = s.eleve_id
-    //                 WHERE e.id = ?");
-    //             break;
-    //         case 'classe':
-    //             $stmt = $pdo->prepare("
-    //                 SELECT c.id, c.nom_classe AS nom, 
-    //                     (SELECT COUNT(*) FROM eleves WHERE classe_id = c.nom_classe) AS total_eleves,
-    //                     (SELECT COUNT(*) FROM eleves WHERE classe_id = c.nom_classe AND sexe = 'F') AS total_filles,
-    //                     (SELECT COUNT(*) FROM eleves WHERE classe_id = c.nom_classe AND sexe = 'M') AS total_garcons
-    //                 FROM classes c 
-    //                 WHERE c.id = ?");
-    //             break;
-    //         case 'enseignant':
-    //             $stmt = $pdo->prepare("
-    //                 SELECT id, nom, prenom, date_naissance, lieu_naissance, telephone, profession
-    //                 FROM enseignants 
-    //                 WHERE id = ?");
-    //             break;
-    //         case 'scolarite':
-    //             $stmt = $pdo->prepare("
-    //                 SELECT s.id, e.nom, e.prenom, s.cout_scolarite, s.montant_paye, 
-    //                     (s.cout_scolarite - s.montant_paye) AS reste_a_payer, 
-    //                     s.etat_scolarite, s.date_paiement
-    //                 FROM scolarites s
-    //                 JOIN eleves e ON s.eleve_id = e.id
-    //                 WHERE s.id = ?");
-    //             break;
-    //         default:
-    //             echo json_encode(["error" => "Type invalide"]);
-    //             exit;
-    //     }
-
-    //     $stmt->execute([$id]);
-    //     echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
-    // }
-
-
     if ($_GET['action'] == 'recherche' && isset($_GET['q']) && isset($_GET['annee_scolaire_id'])) {
         $query = $_GET['q'];
         $anneeScolaireId = $_GET['annee_scolaire_id'];
@@ -2694,133 +1471,7 @@ try {
 
     
     // Pour Les Notifications 
-
-
-    // if ($method == 'GET') {
-    //     $role = $_GET['role'] ?? '';
-    //     $annee = $_GET['annee_scolaire_id'] ?? '';
-
-    //     $query = "
-    //         SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
-    //         FROM notifications n
-    //         JOIN users u ON u.id = n.user_id
-    //         WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
-    //         ORDER BY n.created_at DESC
-    //     ";
-
-    //     $result = $conn->query($query);
-    //     $data = [];
-
-    //     while ($row = $result->fetch_assoc()) {
-    //         $data[] = $row;
-    //     }
-
-    //     echo json_encode($data);
-    //     exit;
-    // }
-
     
-    // if ($method == 'GET' && $_GET['action'] == 'getNotifications') {
-    //     $role = $_GET['role'] ?? 'tous';
-    //     $annee = $_GET['annee_scolaire_id'] ?? '';
-    
-    //     $query = "
-    //         SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
-    //         FROM notifications n
-    //         JOIN users u ON u.id = n.user_id
-    //         WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
-    //         ORDER BY n.created_at DESC
-    //     ";
-    
-    //     $result = $pdo->query($query);
-    //     $data = [];
-    
-    //     while ($row = $result->fetch_assoc()) {
-    //         $data[] = $row;
-    //     }
-    
-    //     echo json_encode($data);
-    //     exit;
-    // }
-    
-
-    // if ($method == 'POST') {
-    //     $input = json_decode(file_get_contents("php://input"), true);
-
-    //     $user_id = (int) $input['user_id'];
-    //     if (!isset($input['user_id']) || empty($input['user_id'])) {
-    //         echo json_encode(['success' => false, 'error' => 'Utilisateur non défini']);
-    //         exit;
-    //     }
-    //     $message = $pdo->real_escape_string($input['message']);
-    //     $cible = $pdo->real_escape_string($input['cible']);
-    //     $annee = $pdo->real_escape_string($input['annee_scolaire_id']);
-
-    //     $query = "INSERT INTO notifications (user_id, message, cible, annee_scolaire_id)
-    //             VALUES ($user_id, '$message', '$cible', '$annee')";
-
-    //     if ($conn->query($query)) {
-    //         echo json_encode(['success' => true]);
-    //     } else {
-    //         echo json_encode(['success' => false, 'error' => $pdo->error]);
-    //     }
-
-    //     exit;
-    // }
-/*
-
-    switch ($method) {
-        case 'GET':
-            if ($action == 'getNotifications') {
-                $role = $_GET['role'] ?? 'tous';
-                $annee = $_GET['annee_scolaire_id'] ?? '';
-            
-                $query = "
-                    SELECT n.*, u.nom, u.prenom, u.role AS auteur_role 
-                    FROM notifications n
-                    JOIN users u ON u.id = n.user_id
-                    WHERE (n.cible = '$role' OR n.cible = 'tous') AND n.annee_scolaire_id = '$annee'
-                    ORDER BY n.created_at DESC
-                ";
-            
-                $result = $pdo->query($query); 
-                $data = [];
-            
-                while ($row = $result->fetch_assoc()) {
-                    $data[] = $row;
-                }
-            
-                echo json_encode($data);
-                exit;
-            }
-            break;
-    
-        case 'POST':
-            if ($action == 'ajouterNotification') {
-                $input = json_decode(file_get_contents("php://input"), true);
-    
-                $user_id = (int) $input['user_id'];
-                $message = $pdo->real_escape_string($input['message']); 
-                $cible = $pdo->real_escape_string($input['cible']); 
-                $annee = $pdo->real_escape_string($input['annee_scolaire_id']); 
-    
-                $query = "INSERT INTO notifications (user_id, message, cible, annee_scolaire_id)
-                        VALUES ($user_id, '$message', '$cible', '$annee')";
-    
-                if ($pdo->query($query)) {
-                    echo json_encode(['success' => true]);
-                } else {
-                    echo json_encode(['success' => false, 'error' => $pdo->error]); 
-                }
-    
-                exit;
-            }
-            break;
-    }
-
-*/    
-
-
     switch ($method) {
         case 'GET':
             if ($action == 'getNotifications') {
@@ -2895,6 +1546,162 @@ try {
             }
             break;
     }
+
+
+    //Pour la Bibliothèque
+
+    switch ($method) {
+        case 'GET':
+            if ($action == 'getLivres') {
+                $annee = $_GET['annee_scolaire_id'] ?? '';
+                $stmt = $pdo->prepare("SELECT * FROM livres WHERE annee_scolaire_id = ?");
+                $stmt->execute([$annee]);
+                echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+                exit;
+            } else if ($action == 'getEmprunts') {
+                $annee = $_GET['annee_scolaire_id'] ?? '';
+                $stmt = $pdo->prepare("
+                    SELECT e.*, l.titre, l.auteur, el.nom AS eleve_nom, el.prenom AS eleve_prenom
+                    FROM emprunts e
+                    JOIN livres l ON e.livre_id = l.id
+                    JOIN eleves el ON e.eleve_id = el.id
+                    WHERE e.annee_scolaire_id = ?
+                    ORDER BY e.date_emprunt DESC
+                ");
+                $stmt->execute([$annee]);
+                echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
+                exit;
+            }
+            break;
+    
+        case 'POST':
+            $data = json_decode(file_get_contents("php://input"), true);
+    
+            if ($action == 'EmprunterLivre') {
+                $stmt = $pdo->prepare("INSERT INTO emprunts (livre_id, eleve_id, date_emprunt, statut, annee_scolaire_id) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([
+                    $data['livre_id'],
+                    $data['eleve_id'],
+                    $data['date_emprunt'],
+                    $data['statut'],
+                    $data['annee_scolaire_id']
+                ]);
+    
+                $db->exec("UPDATE livres SET disponible = 0 WHERE id = " . intval($data['livre_id']));
+                echo json_encode(['success' => true]);
+                exit;
+    
+            } else if ($action == 'retournerLivre') {
+                $stmt = $pdo->prepare("UPDATE emprunts SET date_retour = NOW(), statut = 'retourne' WHERE id = ?");
+                $stmt->execute([$data['id']]);
+    
+                $stmt2 = $pdo->prepare("UPDATE livres SET disponible = 1 WHERE id = (SELECT livre_id FROM emprunts WHERE id = ?)");
+                $stmt2->execute([$data['id']]);
+    
+                echo json_encode(['success' => true]);
+                exit;
+            } else if ($action == 'ajouterLivre') {
+                $data = json_decode(file_get_contents("php://input"), true);
+
+                $titre = $data['titre'] ?? '';
+        $auteur = $data['auteur'] ?? '';
+        $genre = $data['genre'] ?? '';
+        $disponible = $data['disponible'] ?? 1;
+        $annee_id = $data['annee_scolaire_id'] ?? null;
+
+        if (!$annee_id) {
+            echo json_encode(['error' => 'Année scolaire requise']);
+            exit;
+        }
+            
+                if (!empty($data['titre']) && !empty($data['auteur']) && !empty($data['annee_scolaire_id'])) {
+                    try {
+                        $stmt = $pdo->prepare("INSERT INTO livres (titre, auteur, genre, disponible, annee_scolaire_id) VALUES (?, ?, ?, ?, ?)");
+                        $stmt->execute([
+                            $data['titre'],
+                            $data['auteur'],
+                            $data['genre'],
+                            $data['disponible'],
+                            $data['annee_scolaire_id']
+                        ]);
+            
+                        echo json_encode(['success' => true]);
+                        exit;
+            
+                    } catch (PDOException $e) {
+                        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+                        exit;
+                    }
+                }
+            }
+            break;
+
+        // case 'POST':
+            // if ($action == 'ajouterLivre') {
+            //     $data = json_decode(file_get_contents("php://input"), true);
+        
+            //     if (!empty($data['titre']) && !empty($data['auteur']) && !empty($data['annee_scolaire_id'])) {
+            //         $stmt = $db->prepare("INSERT INTO livres (titre, auteur, genre, disponible, annee_scolaire_id) VALUES (?, ?, '', 1, ?)");
+            //         $stmt->execute([
+            //             $data['titre'],
+            //             $data['auteur'],
+            //             $data['annee_scolaire_id']
+            //         ]);
+        
+            //         echo json_encode(['message' => 'Livre ajouté avec succès']);
+            //     } else {
+            //         http_response_code(400);
+            //         echo json_encode(['message' => 'Champs manquants']);
+            //     }
+            //     exit;
+            // }
+        
+        case 'PUT':
+            if ($action == 'modifierLivre') {
+                $data = json_decode(file_get_contents("php://input"), true);
+        
+                if (!empty($data['id']) && !empty($data['titre']) && !empty($data['auteur'])) {
+                    $stmt = $pdo->prepare("UPDATE livres SET titre = ?, auteur = ?, genre = ?, disponible = ? WHERE id = ?");
+                    $stmt->execute([
+                        $data['titre'],
+                        $data['auteur'],
+                        $data['genre'] ?? '',
+                        $data['disponible'] ?? 1,
+                        $data['id']
+                    ]);
+        
+                    echo json_encode(['message' => 'Livre modifié avec succès']);
+                } else {
+                    http_response_code(400);
+                    echo json_encode(['message' => 'Champs manquants']);
+                }
+                exit;
+            }
+            break;
+        
+        case 'DELETE':
+            if ($action == 'supprimerLivre') {
+                $data = json_decode(file_get_contents("php://input"), true);
+        
+                if (!empty($data['id'])) {
+                    $stmt = $pdo->prepare("DELETE FROM livres WHERE id = ?");
+                    $stmt->execute([$data['id']]);
+        
+                    echo json_encode(['message' => 'Livre supprimé avec succès']);
+                } else {
+                    http_response_code(400);
+                    echo json_encode(['message' => 'ID manquant']);
+                }
+                exit;
+            }
+            break;
+            
+    
+        default:
+            echo json_encode(['error' => 'Méthode non prise en charge.']);
+            break;
+    }
+
 
 
 } catch (PDOException $e) {

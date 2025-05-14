@@ -141,6 +141,33 @@ INSERT IGNORE INTO `eleves` (`id`, `prenom`, `nom`, `date_naissance`, `classe_id
 
 -- --------------------------------------------------------
 
+-- Structure de la table `livres`
+
+CREATE TABLE livres (
+  id INT(10) UNSIGNED NOT NULL,
+  titre VARCHAR(255),
+  auteur VARCHAR(255),
+  genre VARCHAR(100),
+  disponible BOOLEAN DEFAULT TRUE,
+  annee_scolaire_id varchar(10) DEFAULT NULL,
+  PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE emprunts (
+  id INT(10) UNSIGNED NOT NULL,
+  livre_id INT(10) UNSIGNED NOT NULL,
+  eleve_id INT(10) UNSIGNED NOT NULL,
+  date_emprunt DATE,
+  date_retour DATE,
+  statut VARCHAR(50),
+  annee_scolaire_id varchar(10) DEFAULT NULL,
+
+  PRIMARY KEY (id),
+  FOREIGN KEY (livre_id) REFERENCES livres(id),
+  FOREIGN KEY (eleve_id) REFERENCES eleves(id),
+  FOREIGN KEY (annee_scolaire_id) REFERENCES annee_scolaire(id)
+);
 --
 -- Structure de la table `emargements`
 --
@@ -312,6 +339,8 @@ CREATE TABLE `notifications` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `lue` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
 
 --
 -- Déchargement des données de la table `notifications`

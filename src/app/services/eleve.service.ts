@@ -11,11 +11,7 @@ export class EleveService {
   private apiUrl = 'http://localhost/proSchool/backend/api/api.php'; // Change l'URL si nécessaire
 
   constructor(private http: HttpClient, private anneeService: AnneeScolaireService) { }
-/*
-  getEleves(idEleve: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?action=getEleves`);
-  }
-*/
+
   getEleves(idEleve: number): Observable<any[]> {
     const anneeId = this.anneeService.getAnneeActuelle();
     if (!anneeId) {
@@ -69,10 +65,10 @@ export class EleveService {
   }
 
 
-// 🔹 Modifier un élève existant
-modifierEleve(eleveId: number, eleve: any): Observable<any> {
-  return this.http.put<any>(`${this.apiUrl}?action=modifierEleve&id=${eleveId}`, eleve);
-}
+  // 🔹 Modifier un élève existant
+  modifierEleve(eleveId: number, eleve: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}?action=modifierEleve&id=${eleveId}`, eleve);
+  }
 
   supprimerEleve(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}?action=supprimerEleve&id=${id}`);

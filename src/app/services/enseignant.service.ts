@@ -11,51 +11,6 @@ export class EnseignantService {
 
   constructor(private http: HttpClient, private anneeService: AnneeScolaireService) {}
 
-
-  /*
-  getEnseignants(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}?action=getEnseignants`);
-  }
-
-  getEnseignantById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}?action=getEnseignant&id=${id}`);
-  }
-
-
-  ajouterEnseignant(enseignant: any, photo: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('prenom', enseignant.prenom || '');
-    formData.append('nom', enseignant.nom || '');
-    formData.append('date_naissance', enseignant.date_naissance || '');
-    formData.append('lieu_naissance', enseignant.lieu_naissance || '');
-    formData.append('telephone', enseignant.telephone || '');
-    formData.append('profession', enseignant.profession || '');
-    formData.append('annee_scolaire_id', String(enseignant.annee_scolaire_id));
-    if (photo) formData.append('photo', photo);
-  
-    formData.forEach((value, key) => {
-      console.log(`${key}:`, value);
-    });
-  
-    return this.http.post(`${this.apiUrl}?action=ajouterEnseignant`, formData);
-  }
- 
-
-
- 
-
-  supprimerEnseignant(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}?action=supprimerEnseignant&id=${id}`);
-  }
-
-  modifierEnseignant(id: string, enseignantData: FormData): Observable<any> {
-    console.log('FormData envoyée:', enseignantData); 
-    return this.http.post(`${this.apiUrl}?action=modifierEnseignant`, enseignantData);
-      
-  }
-
-  */
-
   // 🔹 Récupérer les enseignants actifs pour l'année scolaire
   getEnseignants(): Observable<any[]> {
     const anneeId = this.anneeService.getAnneeActuelle();

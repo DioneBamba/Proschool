@@ -22,11 +22,6 @@ import { AjoutAnneeScolaireComponent } from "../annee-scolaire/ajout-annee-scola
   styleUrl: './admin-dashboard.component.css'
 })
 export class AdminDashboardComponent implements OnInit {
-  // totalEleves = 0;
-  // totalEnseignants = 0;
-  // totalPaiements = 0;
-  // totalAbsences = 0;
-
   // 🔹 Déclaration du FormGroup pour stocker les statistiques
   statsForm!: FormGroup;
   anneesScolaires: any[] = [];

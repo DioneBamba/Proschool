@@ -112,6 +112,8 @@ export class NavbarComponent implements OnInit {
 
     // this.loadNotifications();
 
+    // this.role = this.username?.role || localStorage.getItem('role') || 'tous';
+
     this.currentDate = new Date();
 
     // 🔔 Charge les notifications au démarrage
@@ -131,7 +133,7 @@ export class NavbarComponent implements OnInit {
     setInterval(() => {
       console.log("🔄 Vérification périodique des notifications...");
       this.chargerNotifications();
-      
+      this.currentDate = new Date();
     }, 10000); // toutes les 10 secondes
   }
 
@@ -203,6 +205,7 @@ export class NavbarComponent implements OnInit {
     if (!this.role || !this.username) return;
 
     this.notifService.getNotifications(this.role).subscribe((data) => {
+      
       // Filtrer les notifications destinées à cet utilisateur
       const notificationsUtilisateur = data.filter(n => n.destinataire == this.username?.id);
       

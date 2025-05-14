@@ -65,17 +65,6 @@ export class AbsencesComponent implements OnInit {
     });
   }
 
- /* getFilteredAbsences() {
-    // return this.absences.filter(absence =>
-    //   absence.eleve_id.toLowerCase().includes(this.searchText.toLowerCase()) ||
-    //   absence.matiere_id.toLowerCase().includes(this.searchText.toLowerCase()) ||
-    //   absence.enseignant_id.toLowerCase().includes(this.searchText.toLowerCase()) ||
-    //   absence.classe_id.toLowerCase().includes(this.searchText.toLowerCase())
-    // );
-
-    return this.absences ? this.absences.filter(a => a.classe === this.selectedClasse) : [];
-  }
-*/
   getFilteredAbsences() {
     return this.absences.filter(a => a.classe === this.selectedClasse);
   }

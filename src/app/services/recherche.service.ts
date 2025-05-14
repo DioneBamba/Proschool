@@ -12,14 +12,6 @@ export class RechercheService {
 
   constructor(private http: HttpClient, private anneeService: AnneeScolaireService) {}
 
-  // search(query: string): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}?action=recherche&q=${query}`);
-  // }
-
-  // getDetails(id: string, type: string): Observable<any> {
-  //   return this.http.get<any>(`${this.apiUrl}?action=getDetails&id=${id}&type=${type}`);
-  // }
-
   search(query: string): Observable<any> {
     const anneeId = this.anneeService.getAnneeActuelle();
     if (!anneeId) {

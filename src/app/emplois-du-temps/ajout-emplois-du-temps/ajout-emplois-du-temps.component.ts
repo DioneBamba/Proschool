@@ -130,100 +130,48 @@ export class AjoutEmploisDuTempsComponent implements OnInit {
       }
     }
   }
-  
 
- 
-  
-/*  ajouterEmplois() {
-    if (!this.selectedClasse) {
-      alert("Veuillez sélectionner une classe avant d'ajouter l'emploi du temps.");
-      return;
-    }
-  
-    const emplois = [];
-    for (let jour of this.jours) {
-      for (let heure of this.heures) {
-        // const selectElement = document.querySelector(`select[jour="${jour}"][heure="${heure}"]`) as HTMLSelectElement;
-        // const selectElement = document.querySelector(`select[name="${jour}-${heure}"]`) as HTMLSelectElement;
-        const selectElement = document.querySelector(`select[name="${jour}-${heure}"]`) as HTMLSelectElement;
+  ajouterEmplois() {
+    // On suppose que les données emploiTemps sont organisées par jour/heure
+    this.donneesAEnvoyer = [];
 
-        const matiereId = selectElement ? selectElement.value : null;
-  
-        if (matiereId) {
-          // Extraire uniquement l'heure de début
-          const heureDebut = heure.split(' - ')[0];
-  
-          emplois.push({
+    for (const jour of this.jours) {
+      for (const heure of this.heures) {
+        const heureDebut = heure.split(' - ')[0];
+        const matiere_id = this.emploiTemps?.[jour]?.[heure];
+
+        if (matiere_id) {
+          this.donneesAEnvoyer.push({
             classe_id: this.selectedClasse,
-            jour: jour,
-            heure: heureDebut,  // ✅ Envoi de l'heure au bon format
-            matiere_id: matiereId,
+            jour,
+            heure: heureDebut,
+            matiere_id,
+            annee_scolaire_id: this.anneeScolaireId
           });
         }
       }
     }
-  
-    if (emplois.length === 0) {
-      alert("Veuillez sélectionner des matières avant d'ajouter l'emploi du temps.");
-      return;
-    }
-  
-    console.log("Données envoyées :", emplois); // Debug
-    // this.emploiService.ajouterEmplois(emplois).subscribe(response => {
-    //   console.log("Réponse du serveur :", response);
-    //   this.router.navigate(['/emplois-du-temps']);
-    // });
 
-    this.emploiService.ajouterEmplois({
-      emplois: emplois,
-      annee_scolaire_id: this.anneeScolaireId
-    }).subscribe(response => {
-      console.log("Réponse du serveur :", response);
-      this.router.navigate(['/emplois-du-temps']);
-    });
-  }*/
-  
-    ajouterEmplois() {
-      // On suppose que les données emploiTemps sont organisées par jour/heure
-      this.donneesAEnvoyer = [];
-  
-      for (const jour of this.jours) {
-        for (const heure of this.heures) {
-          const heureDebut = heure.split(' - ')[0];
-          const matiere_id = this.emploiTemps?.[jour]?.[heure];
-  
-          if (matiere_id) {
-            this.donneesAEnvoyer.push({
-              classe_id: this.selectedClasse,
-              jour,
-              heure: heureDebut,
-              matiere_id,
-              annee_scolaire_id: this.anneeScolaireId
-            });
+    if (this.donneesAEnvoyer.length > 0) {
+      this.emploiService.ajouterEmplois(this.donneesAEnvoyer).subscribe(
+        (res: any) => {
+          if (res.success) {
+            console.log('Données à envoyer :', this.donneesAEnvoyer);
+            alert('Emplois du temps ajoutés avec succès.');
+            this.router.navigate(['/emplois-du-temps']);
+          } else {
+            alert(res.message || 'Erreur lors de l\'ajout.');
           }
+        },
+        (err) => {
+          console.error(err);
+          alert("Erreur de communication avec le serveur.");
         }
-      }
-  
-      if (this.donneesAEnvoyer.length > 0) {
-        this.emploiService.ajouterEmplois(this.donneesAEnvoyer).subscribe(
-          (res: any) => {
-            if (res.success) {
-              console.log('Données à envoyer :', this.donneesAEnvoyer);
-              alert('Emplois du temps ajoutés avec succès.');
-              this.router.navigate(['/emplois-du-temps']);
-            } else {
-              alert(res.message || 'Erreur lors de l\'ajout.');
-            }
-          },
-          (err) => {
-            console.error(err);
-            alert("Erreur de communication avec le serveur.");
-          }
-        );
-      } else {
-        alert("Aucun emploi du temps à enregistrer.");
-      }
+      );
+    } else {
+      alert("Aucun emploi du temps à enregistrer.");
     }
+  }
 
 }
 

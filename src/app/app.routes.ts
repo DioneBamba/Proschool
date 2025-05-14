@@ -40,6 +40,7 @@ import { ModifEmargementComponent } from './emargements/modif-emargement/modif-e
 import { BulletinsComponent } from './bulletins/bulletins.component';
 import { DetailsRechercheComponent } from './details-recherche/details-recherche.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { BibliothequesComponent } from './bibliotheques/bibliotheques.component';
 
 export const routes: Routes = [
   
@@ -90,6 +91,7 @@ export const routes: Routes = [
   { path: 'eleve-dashboard', component: EleveDashboardComponent, canActivate: [authGuard], data: { roles: ['eleve'] }},
 
   { path: 'notifications', component: NotificationsComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
+  { path: 'bibliotheques', component: BibliothequesComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
 
   { path: 'unauthorized', component: UnauthorizedComponent },
   // { path: '', redirectTo: 'login', pathMatch: 'full' }

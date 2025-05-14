@@ -26,14 +26,6 @@ export class DetailsRechercheComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const id = this.route.snapshot.paramMap.get('id');
-    // if (id) {
-      // this.rechercheService.getDetails(id, type).subscribe(data => {
-      //   this.details = data;
-      // });
-    //   this.selectResult(id);
-    // }
-
     const id = this.route.snapshot.paramMap.get('id');
     const type = this.route.snapshot.paramMap.get('type'); // Ajouter le type
     if (id && type) {

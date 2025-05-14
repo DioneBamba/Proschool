@@ -11,50 +11,6 @@ export class NoteService {
   private apiUrl = 'http://localhost/proSchool/backend/api/api.php';
 
   constructor(private http: HttpClient,  private anneeService: AnneeScolaireService) {}
-/*
-  getNotes(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getNotes`);
-  }
-
-  getNoteById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getNoteById&id=${id}`);
-  }
-
-  getEleves(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getEleves`);
-  }
-
-  getMatieres(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getMatieres`);
-  }
-
-  getClasses(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getClasses`);
-  }
-
-  getEnseignants(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getEnseignants`);
-  }
-
-  ajouterNote(note: any): Observable<any> {
-    // return this.http.post(`${this.apiUrl}?action=ajouterNote`, note);
-    return this.http.post(`${this.apiUrl}?action=ajouterNote`, note).pipe(
-      catchError((error) => {
-        console.error('Erreur lors de l\'ajout de la note:', error);
-        alert('Une erreur est survenue, veuillez réessayer.');
-        throw error; // Vous pouvez aussi renvoyer un message d'erreur plus spécifique ici
-      })
-    );
-  }
-
-  modifierNote(id: number, note: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}?action=modifierNote&id=${id}`, note);
-  }
-
-  supprimerNote(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}?action=supprimerNote&id=${id}`);
-  }
-    */
 
   // 🔹 Récupérer les notes de l'année scolaire sélectionnée
   getNotes(): Observable<any[]> {

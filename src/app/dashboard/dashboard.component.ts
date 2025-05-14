@@ -11,24 +11,11 @@ import { AjoutAnneeScolaireComponent } from "../annee-scolaire/ajout-annee-scola
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
-    AnneeScolaireComponent,
-    SelectAnneeScolaireComponent,
-    AjoutAnneeScolaireComponent
+    RouterModule
 ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent /*implements OnInit */{
-  /*
-  derniersEleves: any[] = [];
-
-  constructor(private eleveService: EleveService) {}
-
-  ngOnInit(): void {
-    this.eleveService.getEleves().subscribe(data => {
-      this.derniersEleves = data;
-    });
-  }
-    */
+export class DashboardComponent {
+  
 }

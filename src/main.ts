@@ -41,6 +41,7 @@ import { AjoutScolariteComponent } from './app/scolarites/ajout-scolarite/ajout-
 import { ModifScolariteComponent } from './app/scolarites/modif-scolarite/modif-scolarite.component';
 import { ScolaritesComponent } from './app/scolarites/scolarites.component';
 import { NotificationsComponent } from './app/notifications/notifications.component';
+import { BibliothequesComponent } from './app/bibliotheques/bibliotheques.component';
 
 
 
@@ -91,6 +92,8 @@ const routes: Routes = [
   { path: 'details-recherche/:id/:type', component: DetailsRechercheComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant'] } },
   
   { path: 'notifications', component: NotificationsComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
+
+  { path: 'bibliotheques', component: BibliothequesComponent, canActivate: [authGuard], data: { roles: ['admin', 'enseignant','eleve'] }},
 
   { path: '**', redirectTo: 'login' }, // Gérer les routes inexistantes
   { path: 'login', component: LoginComponent }, 

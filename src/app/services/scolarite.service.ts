@@ -12,11 +12,6 @@ export class ScolariteService {
 
   constructor(private http: HttpClient,  private anneeService: AnneeScolaireService) { }
 
-  // Lister les scolarités
-  /*getScolarites(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getScolarites`);
-  }*/
-  
    // 🔹 Récupérer les paiements de l'année scolaire sélectionnée
    getScolarites(): Observable<any[]> {
     const anneeId = this.anneeService.getAnneeActuelle();
@@ -39,34 +34,6 @@ export class ScolariteService {
   getEleves(): Observable<any> {
     return this.http.get(`${this.apiUrl}?action=getEleves`);
   }
-
-  /*
-
-  // Ajouter une scolarité
-  ajouterScolarite(scolarite: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}?action=ajouterScolarite`, {
-      eleve_id: scolarite.eleve_id,
-      date_naissance: scolarite.date_naissance, // Assurez-vous que cette valeur est bien définie
-      sexe: scolarite.sexe,                     // Assurez-vous que cette valeur est bien définie
-      classe_id: scolarite.classe_id,
-      cout_scolarite: scolarite.cout_scolarite,
-      montant_paye: scolarite.montant_paye,
-      reste_a_payer: scolarite.restae_a_payer,
-      date_paiement: scolarite.date_paiement
-  
-    });
-  }
-
-  // Modifier une scolarité
-  modifierScolarite(id: number, scolarite: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}?action=modifierScolarite&id=${id}`, scolarite);
-  }
-
-  // Supprimer une scolarité
-  supprimerScolarite(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}?action=supprimerScolarite&id=${id}`);
-  }
-  */
 
   // 🔹 Ajouter un paiement
   ajouterScolarite(scolarite: any): Observable<any> {

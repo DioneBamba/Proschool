@@ -11,57 +11,6 @@ export class AbsenceService {
 
   constructor(private http: HttpClient, private anneeService: AnneeScolaireService) {}
 
-  /*
-  getAbsences(): Observable<any> {
-    // return this.http.get(`${this.apiUrl}?action=getAbsences`);
-    return this.http.get(`${this.apiUrl}?action=getAbsences`).pipe(
-      tap(data => console.log("Données reçues :", data)),
-      catchError(error => {
-        console.error("Erreur API :", error);
-        return of([]); // Retourne un tableau vide pour éviter l'erreur null
-      })
-    );
-  }
-
-  getAbsenceById(id: number): Observable<any> {
-    console.log(`Requête envoyée à l'API : ${this.apiUrl}?action=getAbsenceById&id=${id}`);
-    return this.http.get<any>(`${this.apiUrl}?action=getAbsenceById&id=${id}`).pipe(
-      catchError(error => {
-        console.error("Erreur lors de la récupération de l'absence :", error);
-        return of(null);
-      })
-    );
-  }
-
-  getEleves(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getEleves`);
-  }
-  
-  getMatieres(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getMatieres`);
-  }
-  
-  getEnseignants(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getEnseignants`);
-  }
-  
-  getClasses(): Observable<any> {
-    return this.http.get(`${this.apiUrl}?action=getClasses`);
-  }
- 
-  ajouterAbsence(absence: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}?action=ajouterAbsence`, absence);
-  }
-
-  modifierAbsence(id: number, absence: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}?action=modifierAbsence&id=${id}`, absence);
-  }
-
-  supprimerAbsence(id: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}?action=supprimerAbsence&id=${id}`);
-  }
-    */
-
    // 🔹 Récupérer les absences de l'année scolaire sélectionnée
    getAbsences(): Observable<any[]> {
     const anneeId = this.anneeService.getAnneeActuelle();

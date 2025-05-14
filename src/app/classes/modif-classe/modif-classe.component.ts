@@ -31,8 +31,6 @@ export class ModifClasseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.id = this.route.snapshot.params['id'];
-    // this.anneeScolaireId = this.anneeService.getAnneeActuelle() ;
     const annee = this.anneeService.getAnneeActuelle();
     this.anneeScolaireId = annee !== null ? annee : 0;
     

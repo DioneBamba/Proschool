@@ -76,22 +76,6 @@ export class ModifEmargementComponent implements OnInit {
     this.enseignantService.getEnseignants().subscribe((data) => (this.enseignants = data));
   }
 
-  // modifierEmargement(): void {
-  //   if (this.emargementForm.valid) {
-  //     console.log('Form data being sent:', this.emargementForm.value);
-  //     this.emargementService.modifierEmargement(this.emargementForm.value).subscribe({
-  //       next: () => {
-  //         console.log('Émargement modifié avec succès');
-  //         alert('Émargement modifié avec succès');
-  //         this.router.navigate(['/emargements']);
-  //       },
-  //       error: (err) => {
-  //         console.error('Erreur lors de la modification', err);
-  //       },
-  //     });
-  //   }
-  // }
-
   modifierEmargement(): void {
     if (this.emargementForm.valid) {
       const emargementData = {

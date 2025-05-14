@@ -46,10 +46,6 @@ export class ClasseService {
     return this.http.post<any>(`${this.apiUrl}?action=ajouterClasse`, classe);
   }
 
-  // 🔹 Modifier une classe
-  // modifierClasse(classeId: number, classe: any): Observable<any> {
-  //   return this.http.put<any>(this.apiUrl, { action: 'modifierClasse', id: classeId, ...classe });
-  // }
 
   modifierClasse(classe: any): Observable<any> {
     console.log('URL appelée:', `${this.apiUrl}?action=modifierClasse&id=${classe.id}`);

@@ -20,18 +20,6 @@ export class AnneeScolaireService {
     return this.http.post<any>(`${this.apiUrl}?action=ajouterAnneeScolaire`, annee);
   }
 
-  // getAnneesScolaires(table: string, annee: string): Observable<any> {
-  //   console.log(`Requête API : ${this.apiUrl}?table=${table}&anneeScolaire=${annee}`);
-  //   return this.http.get<any>(`${this.apiUrl}?table=${table}&anneeScolaire=${annee}`);
-  // }
-
-  // Récupérer l'année scolaire sélectionnée depuis localStorage
-  // getAnneeActuelle(): number | null {
-  //   // return parseInt(localStorage.getItem(this.anneeActuelleKey) || '0', 10);
-  //   const annee = localStorage.getItem(this.anneeActuelleKey);
-  //   return annee ? parseInt(annee, 10) : null;
-  // }
-
   getAnneeActuelle(): number | null {
     const annee = localStorage.getItem(this.anneeActuelleKey);
     console.log('Année scolaire récupérée depuis localStorage :', annee);  // Vérifie la valeur récupérée

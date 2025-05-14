@@ -74,28 +74,5 @@ export class EleveDashboardComponent implements OnInit {
     });
   
   }
-/*
-  getEmploiDuTempsDuJour(): void {
-    this.dashboardService.getEleveStats().subscribe({
-      next: (data) => this.emploiDuTempsDuJour = data,
-      error: (error) => console.error('Erreur emploi du temps :', error)
-    });
-  }
-
-  getMeilleuresMoyennes(): void {
-    this.dashboardService.getEleveStats().subscribe({
-      next: (data) => this.meilleuresMoyennes = data,
-      error: (error) => console.error('Erreur moyennes :', error)
-    });
-  }
-
-  getTotalAbsences(): void {
-    this.dashboardService.getEleveStats().subscribe({
-      next: (data) => this.totalAbsences = data.total,
-      error: (error) => console.error('Erreur absences :', error)
-    });
-  }
-
-*/
 
 }

@@ -32,18 +32,7 @@ export class AjoutAbsenceComponent implements OnInit {
   anneeScolaireId!: number;
   idEleve!: number;
   anneeScolaireLibelle!: string;
-  // absence = {
-  //   jour: '',
-  //   heure_debut: '',
-  //   heure_fin: '',
-  //   date_absence: '',
-  //   eleve_id: '',
-  //   matiere_id: '',
-  //   enseignant_id: '',
-  //   classe_id: '',
-  //   justifie: '',
-  //   motif_justifie: ''
-  // };
+  
 
   constructor(
     private absenceService: AbsenceService,
@@ -101,44 +90,6 @@ export class AjoutAbsenceComponent implements OnInit {
       });
     }
 
-
-    // Récupération des classes
-    // this.classeService.getClasses().subscribe(
-    //   (data: any[] | null) => {
-    //     console.log("Données des classes récupérées :", data);
-    //     this.classes = Array.isArray(data) ? data : [];
-    //   },
-    //   (error: any) => {
-    //     console.error("Erreur lors de la récupération des classes", error);
-    //     this.classes = [];
-    //   }
-    // );
-
-    // Récupération des eleves
-    // this.eleveService.getEleves().subscribe(
-    //   (data: any[] | null) => {
-    //     console.log("Données des eleves récupérées :", data);
-    //     this.eleves = Array.isArray(data) ? data : [];
-    //   },
-    //   (error: any) => {
-    //     console.error("Erreur lors de la récupération des eleves", error);
-    //     this.eleves = [];
-    //   }
-    // );
-
-
-    // Récupération des classes
-    // this.matiereService.getMatieres().subscribe(
-    //   (data: any[] | null) => {
-    //     console.log("Données des matieres récupérées :", data);
-    //     this.matieres = Array.isArray(data) ? data : [];
-    //   },
-    //   (error: any) => {
-    //     console.error("Erreur lors de la récupération des matieres", error);
-    //     this.matieres = [];
-    //   }
-    // );
-
     // Récupération des enseignants
     this.enseignantService.getEnseignants().subscribe(data => {
       this.enseignants = data;
@@ -169,10 +120,6 @@ export class AjoutAbsenceComponent implements OnInit {
     this.matiereService.getMatieres().subscribe(data => {
       this.matieres = data;
     });
-
-    // this.absenceService.getEnseignants().subscribe(data => {
-    //   this.enseignants = data;
-    // });
 
     this.classeService.getClasses().subscribe(data => {
       this.classes = data;

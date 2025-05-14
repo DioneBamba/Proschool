@@ -51,19 +51,6 @@ export class ModifAbsenceComponent implements OnInit {
     // Récupération de l'ID depuis l'URL
     const idParam = this.route.snapshot.paramMap.get('id');
     this.absenceId = idParam ? Number(idParam): 0;
-
-    // this.route.paramMap.subscribe(params => {
-    //   this.absenceId = params.get('id'); // Assurez-vous que l'ID est bien converti en nombre
-    //   if (this.absenceId) {
-    //     this.chargerAbsence();
-    //   }
-    // });
-
-    // Vérification si l'ID est bien récupéré
-    // if (!this.absenceId || isNaN(this.absenceId)) {
-    //   console.error("L'ID de l'absence est invalide :", idParam);
-    //   return;
-    // }
     console.log("ID de l'absence récupéré :", this.absenceId);
 
     // Initialisation du formulaire
@@ -155,28 +142,6 @@ export class ModifAbsenceComponent implements OnInit {
     this.enseignantService.getEnseignants().subscribe(data => this.enseignants = data);
     this.classeService.getClasses().subscribe(data => this.classes = data);
   }
-
-  // modifierAbsence(): void {
-  //   console.log(this.absenceForm.value);
-  //   console.log(this.absenceForm.valid);
-  //   console.log(this.absenceForm.controls);
-  //   if (this.absenceForm.invalid) {
-  //     alert('Veuillez remplir tous les champs obligatoires.');
-  //     return;
-  //   }
-
-  //   const absenceData = { id: this.absenceId, ...this.absenceForm.value };
-
-  //   this.absenceService.modifierAbsence(this.absenceId, absenceData).subscribe(
-  //     response => {
-  //       alert('Absence modifiée avec succès !');
-  //       this.router.navigate(['/absences']);
-  //     },
-  //     error => {
-  //       console.error('Erreur lors de la modification:', error);
-  //     }
-  //   );
-  // }
 
   modifierAbsence(): void {
     console.log(this.absenceForm.value);

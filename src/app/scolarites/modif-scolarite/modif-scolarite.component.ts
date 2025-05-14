@@ -82,54 +82,9 @@ export class ModifScolariteComponent implements OnInit {
     this.scolariteForm.get('cout_scolarite')?.valueChanges.subscribe(() => this.calculerReste());
     this.scolariteForm.get('montant_paye')?.valueChanges.subscribe(() => this.calculerReste());
 
-
-    // this.scolariteForm.get('eleve_id')?.valueChanges.subscribe(eleveId => {
-    //   console.log("Élève sélectionné ID:", eleveId);
-    //   const eleveSelectionne = this.eleves.find(e => e.id == eleveId); // Vérifie que l'ID correspond
-    //   console.log("Élève sélectionné :", eleveSelectionne);
-    //   if (eleveSelectionne) {
-    //     this.scolariteForm.patchValue({
-    //       date_naissance: eleveSelectionne.date_naissance || '',
-    //       sexe: eleveSelectionne.sexe || '',
-    //       classe_id: eleveSelectionne.classe_id || ''
-    //     });
-    //   }
-    // });
-
   }
 
   // Charger les informations de la scolarité existante
-  // chargerScolarite(id: number): void {
-  //   this.eleveService.getEleves(this.idEleve).subscribe(data => {
-  //     this.eleves = data;
-  //   });
-
-  //   this.classeService.getClasses().subscribe(data => {
-  //     this.classes = data;
-  //   });
-
-  //   this.scolariteService.getScolariteById(id).subscribe(scolarite => {
-  //     if (scolarite) {
-  //       console.log('Données reçues :', scolarite);
-  //       this.scolariteForm.patchValue({
-  //         eleve_id: scolarite.eleve_id,
-  //         date_naissance: scolarite.date_naissance,
-  //         sexe: scolarite.sexe,
-  //         classe_id: scolarite.classe_id,
-  //         cout_scolarite: scolarite.cout_scolarite,
-  //         montant_paye: scolarite.montant_paye,
-  //         reste_a_payer: scolarite.reste_a_payer,
-  //         etat_scolarite: scolarite.etat_scolarite,
-  //         date_paiement: scolarite.date_paiement
-
-  //       });
-  //     } else {
-  //       console.error('Aucune donnée de scolarité trouvée pour cet ID');
-  //     }
-  //   }, error => {
-  //     console.error('Erreur de récupération des données :', error);
-  //   });
-  // }
 
   chargerScolarite(id: number): void {
     this.scolariteService.getScolariteById(id).subscribe({

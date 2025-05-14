@@ -65,19 +65,6 @@ export class AuthService {
     );
   }
 
-  /*
-  login(email: string, password: string) {
-    const body = { email, password };
-  
-    return this.http.post<any>(`${this.apiUrl}?action=login`, body).pipe(
-      tap(response => console.log('Réponse API:', response)), // Debug ici
-      catchError(error => {
-        console.error('Erreur API:', error);
-        return throwError(error);
-      })
-    );
-  }
-*/
   logout(): void {
     // localStorage.removeItem('token');
     localStorage.removeItem('user');

@@ -27,18 +27,12 @@ export class ClassesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.anneeScolaireId = this.anneeService.getAnneeActuelle();
     const annee = this.anneeService.getAnneeActuelle();
     this.anneeScolaireId = annee !== null ? annee : 0;
     this.loadClasses();
   }
 
   loadClasses(): void {
-    // this.classeService.getClasses().subscribe(
-    //   (data) => { this.classes = data; },
-    //   (error) => { console.error('Erreur lors du chargement des classes', error); }
-    // );
-
     this.classeService.getClasses().subscribe(data => {
       this.classes = data;
     });

@@ -47,10 +47,6 @@ export class EmargementService {
   }
 
   // 🔹 Modifier une Emargement
-  // modifierClasse(classeId: number, classe: any): Observable<any> {
-  //   return this.http.put<any>(this.apiUrl, { action: 'modifierClasse', id: classeId, ...classe });
-  // }
-
   modifierEmargement(emargement: any): Observable<any> {
     console.log('URL appelée:', `${this.apiUrl}?action=modifierEmargement&id=${emargement.id}`);
     return this.http.put(`${this.apiUrl}?action=modifierEmargement&id=${emargement.id}`, emargement).pipe(

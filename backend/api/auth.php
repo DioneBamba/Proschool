@@ -1,4 +1,5 @@
 <?php
+/*
 include_once '../config/config.php';
 require '../vendor/autoload.php';
 
@@ -32,4 +33,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+*/
 ?>

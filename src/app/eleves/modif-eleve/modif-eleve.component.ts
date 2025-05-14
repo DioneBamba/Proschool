@@ -102,26 +102,6 @@ export class ModifEleveComponent implements OnInit {
         }
       });
     }
-/*
-    this.eleveService.getEleveById(Number(this.idEleve)).subscribe(eleve => {
-      if (eleve) {
-        this.eleveForm.patchValue({
-          prenom: eleve.prenom,
-            nom: eleve.nom,
-            date_naissance: eleve.date_naissance,
-            classe_id: eleve.classe_id,
-            groupe: eleve.groupe,
-            nationalite: eleve.nationalite,
-            adresse: eleve.adresse,
-            telephone: eleve.telephone,
-            sexe: eleve.sexe,
-            annee_scolaire_id: eleve.annee_scolaire_id
-        }); // Charge les données directement dans le formulaire
-      } else {
-        console.log('Élève non trouvé');
-      }
-    });
-*/
   }
   
   
@@ -169,15 +149,6 @@ export class ModifEleveComponent implements OnInit {
 
 
   modifierEleve() {
-    // if (this.eleveForm.valid && this.idEleve) {
-    //   this.eleveService.modifierEleve(Number(this.idEleve), this.eleveForm.value).subscribe(response => {
-    //     alert('Voulez-vous modifié ces informations!');
-    //     alert('Élève modifié avec succès !');
-    //   });
-    // } else {
-    //   console.error("Formulaire invalide :", this.eleveForm.errors);
-    // }
-
     if (this.eleveForm.valid && this.idEleve) {
       this.eleveService.modifierEleve(Number(this.idEleve), this.eleveForm.value).subscribe(response => {
         alert('Élève modifié avec succès !');
@@ -210,8 +181,6 @@ export class ModifEleveComponent implements OnInit {
       }
     }
   }
-
-  
 
   trackById(index: number, item: any): number {
     return item.id;

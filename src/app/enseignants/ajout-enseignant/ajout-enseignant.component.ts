@@ -79,56 +79,7 @@ export class AjoutEnseignantComponent implements OnInit{
       this.anneesScolaires = annees;
     });
   }
-
-  // onFileSelected(event: any) {
-  //   this.selectedFile = event.target.files[0];
-  // }
-
-  // onFileSelected(event: any) {
-  //   if (event.target.files.length > 0) {
-  //       this.selectedFile = event.target.files[0];
-  //       console.log("Fichier sélectionné:", this.selectedFile);
-  //   }
-  // }
-
-  /*
-  ajouterEnseignant(): void {
-    // if (this.enseignantForm.invalid) {
-    //   console.log('Formulaire invalide', this.enseignantForm.value);
-    //   return;
-    // }
-
-    // console.log('Données envoyées:', this.enseignantForm.value);
-    // console.log('Fichier:', this.selectedFile);
-
-    // this.enseignantService.ajouterEnseignant(this.enseignantForm.value, this.selectedFile)
-    //   .subscribe((response) => {
-    //     console.log('Réponse du backend:', response);
-    //     this.router.navigate(['/enseignants']);
-    //   }, error => {
-    //     console.error('Erreur lors de l\'ajout:', error);
-    //   });
-
-  if (this.enseignantForm.invalid) {
-    console.log('Formulaire invalide', this.enseignantForm.value);
-    alert('Formulaire invalide');
-    return;
-  }
-
-  console.log('Données envoyées:', this.enseignantForm.value);
-  console.log('Fichier:', this.selectedFile);
-
-  this.enseignantService.ajouterEnseignant(this.enseignantForm.value, this.selectedFile)
-    .subscribe((response) => {
-      console.log('Réponse du backend:', response);
-      alert('Enseignant enregitré ave c succés');
-      this.router.navigate(['/enseignants']);
-    }, (error) => {
-      console.error('Erreur lors de l\'ajout:', error);
-    });
-  }
-*/
-
+  
   ajouterEnseignant(): void {
     if (this.enseignantForm.invalid) {
         console.log('Formulaire invalide', this.enseignantForm.value);

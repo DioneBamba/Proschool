@@ -1,20 +1,3 @@
-<!-- 
- <h2>Ajouter une classe</h2>
-<form [formGroup]="classeForm" (ngSubmit)="modifierClasse()">
-  <label for="nom_classe">Nom de la classe</label>
-  <input id="nom_classe" formControlName="nom_classe" type="text" required />
-
-  <label for="annee_scolaire_id">Année scolaire</label>
-  <select id="annee_scolaire_id" formControlName="annee_scolaire_id" required>
-    <option *ngFor="let annee of anneesScolaires" [value]="annee.id">{{ annee.libelle }}</option>
-  </select>
-
-  <button type="submit" [disabled]="classeForm.invalid">Ajouter</button>
-  <button type="button" (click)="annuler()">Annuler</button>
-</form>
- -->
-
-
 <div class="container mt-4">
   <h2 class="text-center mb-4">Nodifier une classe</h2>
   <div class="card shadow-sm p-4">

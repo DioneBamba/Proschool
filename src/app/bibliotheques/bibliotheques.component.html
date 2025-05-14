@@ -1,0 +1,77 @@
+<!-- Bouton pour ouvrir la boîte de dialogue -->
+<button (click)="ouvrirDialog()" class="btn btn-primary mt-4 mb-3">
+  Ajouter un Livre
+</button>
+
+<!-- Boîte de dialogue pour ajouter un livre -->
+<div class="modal" tabindex="-1" [ngClass]="{ 'show d-block': dialogOuvert }" *ngIf="dialogOuvert">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter un Livre</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="fermerDialog()"></button>
+      </div>
+
+      <form [formGroup]="formulaireLivre" (ngSubmit)="ajouterLivre()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="titre" class="form-label">Titre</label>
+            <input id="titre" type="text" formControlName="titre" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="auteur" class="form-label">Auteur</label>
+            <input id="auteur" type="text" formControlName="auteur" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <input id="genre" type="text" formControlName="genre" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="disponible" class="form-label">Disponible</label>
+            <input id="disponible" type="number" formControlName="disponible" class="form-control" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="fermerDialog()">Annuler</button>
+          <button type="submit" class="btn btn-success" [disabled]="formulaireLivre.invalid">Ajouter</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- Fond assombri quand la modal est ouverte -->
+<div class="modal-backdrop fade show" *ngIf="dialogOuvert"></div>
+
+
+<!-- bibliotheque.component.html -->
+<div class="row">
+  <div class="col-md-6">
+    <h5>📚 Livres disponibles</h5>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let livre of livres">
+        <span>{{ livre.titre }} - {{ livre.auteur }}</span>
+        <button class="btn btn-sm btn-primary float-end" *ngIf="livre.disponible" (click)="emprunter(livre.id)">Emprunter</button>
+        <button class="btn btn-sm btn-warning float-end ms-2" (click)="modifierLivre(livre.id, livre)">Modifier</button>
+  
+        <button class="btn btn-sm btn-danger float-end" (click)="supprimerLivre(livre.id)">Supprimer</button>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="col-md-6">
+    <h5>📖 Emprunts en cours</h5>
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let emprunt of emprunts">
+        Livre ID: {{ emprunt.livre_id }} - Eleve ID: {{ emprunt.eleve_id }}
+        <button class="btn btn-sm btn-success float-end" (click)="retourner(emprunt.id)">Retourner</button>
+      </li>
+    </ul>
+  </div>
+</div>
